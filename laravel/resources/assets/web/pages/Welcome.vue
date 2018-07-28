@@ -17,10 +17,6 @@
             <!-- renew -->
             <renew v-else v-model="type"></renew>
         </section>
-
-        <footer class="gaoqi-leading__footer">
-            
-        </footer>
     </div>
 </template>
 

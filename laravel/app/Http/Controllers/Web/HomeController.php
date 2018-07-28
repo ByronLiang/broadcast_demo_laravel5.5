@@ -12,7 +12,7 @@ class HomeController extends Controller
     public function index()
     {
     	$banner = Banner::where('status', 1)->get();
-    	$author = Author::get();
+    	$author = Author::limit(6)->get();
 
     	return \Response::success(compact('banner', 'author'));
     }

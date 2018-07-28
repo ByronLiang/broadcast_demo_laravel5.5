@@ -10,7 +10,7 @@ Route::group(['middleware' => ['spa:web']], function () {
 	Route::post('register', 'AuthController@postRegister');
 	Route::resource('home', 'HomeController');
 	Route::group(['middleware' => 'auth:web'], function () {
-		
+		Route::get('chat_info', 'ChatController@fetchChatRoomInfo');
 	});
 
 	// Route::get('/welcome', function () {

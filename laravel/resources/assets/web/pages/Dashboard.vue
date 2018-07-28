@@ -13,22 +13,45 @@
                 <el-button type="text">聊天室列表</el-button>
             </router-link>
         </div>
+        <div>
+            <h3>作者们</h3>
+            <el-row>
+                <el-col :span="12" v-for="(author, index) in authors" 
+                    :key="index">
+                    <el-card>
+                        <img :src="author.avatar" class="avatar">
+                        <div style="padding: 14px;">
+                            <span>{{ author.name }}</span>
+                            <div style="margin-top: 13px;">
+                                <div class="time">{{ author.introduction }}</div>
+                                <el-button type="text" class="button">了解更多</el-button><br>
+                                <router-link :to="`/chat_room/${author.id}`">
+                                    <el-button type="text" class="button">与他们聊天</el-button>
+                                </router-link>
+                            </div>
+                      </div>
+                    </el-card>
+                </el-col>
+            </el-row>
+        </div>
     </div>
 </template>
 
 <script>
-import {Button, Carousel, CarouselItem} from 'element-ui';
+import {Button, Carousel, CarouselItem, Row, Col} from 'element-ui';
 
 export default {
     components: {
         ElButton: Button,
         ElCarousel: Carousel,
         ElCarouselItem: CarouselItem,
+        ElRow: Row,
+        ElCol: Col,
     },
     data() {
         return {
             banner: [],
-            author: [],
+            authors: [],
         };
     },
     created() {
@@ -40,7 +63,7 @@ export default {
         fetchData() {
             API.get('home').then((r) => {
                 this.banner = r.banner;
-                this.author = r.author;
+                this.authors = r.author;
             })
         },
     },
@@ -61,11 +84,27 @@ export default {
         width: 100%;
     }
   
-  .el-carousel__item:nth-child(2n) {
-    background-color: #99a9bf;
-  }
+    .el-carousel__item:nth-child(2n) {
+        background-color: #99a9bf;
+    }
   
-  .el-carousel__item:nth-child(2n+1) {
-    background-color: #d3dce6;
-  }
+    .el-carousel__item:nth-child(2n+1) {
+        background-color: #d3dce6;
+    }
+    .avatar {
+        display: inline-block;
+        width: 80px;
+        height: 80px;
+        padding: 2px;
+        margin-right: 10px;
+        border-radius: 50%;
+        cursor: pointer;
+        overflow: hidden;
+        vertical-align: middle;
+        border: 1px solid #ddd;
+    }
+    .time {
+        font-size: 13px;
+        color: #999;
+    }
 </style>

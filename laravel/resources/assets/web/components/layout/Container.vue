@@ -20,7 +20,9 @@
                     <span class="inline-block align-middle">系统设置</span>
                 </section>
             </el-popover>
-            <el-button v-else type="normal">Login</el-button>
+            <router-link to="/login" v-else>
+                <el-button type="normal">登录</el-button>
+            </router-link>
         </el-header>
 
         <el-container>

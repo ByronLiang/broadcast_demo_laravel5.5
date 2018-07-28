@@ -8,12 +8,19 @@
 export default {
     components: {},
     data() {
-        return {};
+        return {
+            author: [],
+        };
     },
     created() {
+        this.fetchData();
     },
     mounted() {
     },
-    methods: {},
+    methods: {
+        fetchData() {
+            
+        }
+    },
 };
 </script>
