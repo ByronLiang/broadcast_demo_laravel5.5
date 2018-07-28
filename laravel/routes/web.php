@@ -8,6 +8,7 @@ Route::group(['middleware' => ['spa:web']], function () {
 	});
 	Route::post('login', 'AuthController@postLogin');
 	Route::post('register', 'AuthController@postRegister');
+	Route::resource('home', 'HomeController');
 	Route::group(['middleware' => 'auth:web'], function () {
 		
 	});
