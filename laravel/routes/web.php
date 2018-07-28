@@ -11,6 +11,7 @@ Route::group(['middleware' => ['spa:web']], function () {
 	Route::resource('home', 'HomeController');
 	Route::group(['middleware' => 'auth:web'], function () {
 		Route::get('chat_info', 'ChatController@fetchChatRoomInfo');
+		Route::resource('message', 'ChatController');
 	});
 
 	// Route::get('/welcome', function () {

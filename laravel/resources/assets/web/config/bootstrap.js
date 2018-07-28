@@ -104,3 +104,13 @@ import Api from '../api';
  * @type {AxiosInstance}
  */
 window.API = new Api('/');
+
+import Pusher from "pusher-js"
+import Echo from "laravel-echo"
+
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: '53152d6ab8ba731ffde1',
+    cluster: 'ap1',
+    encrypted: true
+});
