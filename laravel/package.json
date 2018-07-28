@@ -1,0 +1,69 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "npm run development",
+    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch-poll": "npm run watch -- --watch-poll",
+    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "prod": "npm run production",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,vue}": [
+      "eslint --fix --ignore-path .gitignore --ignore-path .eslintignore",
+      "git add"
+    ],
+    "*.php": [
+      "php -l"
+    ]
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "blueimp-canvas-to-blob": "^3.14.0",
+    "blueimp-load-image": "^2.19.0",
+    "crypto-js": "^3.1.9-1",
+    "date-fns": "^1.29.0",
+    "element-ui": "^2.3.4",
+    "loadjs": "^3.5.4",
+    "lodash": "^4.17.5",
+    "mathjs": "^4.2.2",
+    "qs": "^6.5.2",
+    "siema": "^1.5.1",
+    "store": "^2.0.12",
+    "tailwindcss": "^0.5.3",
+    "vue": "^2.5.16",
+    "vue-router": "^3.0.1",
+    "vue-smooth-picker": "^0.3.7",
+    "vue-swipe": "^2.4.0",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.3",
+    "babel-plugin-component": "^1.1.1",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "cross-env": "^5.1.4",
+    "eslint": "^4.19.1",
+    "eslint-config-google": "^0.9.1",
+    "eslint-friendly-formatter": "^4.0.1",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-html": "^4.0.3",
+    "eslint-plugin-vue": "^4.5.0",
+    "husky": "^0.14.3",
+    "laravel-mix": "^2.1.11",
+    "lint-staged": "^7.1.0",
+    "vue-eslint-parser": "^2.0.3",
+    "vue-template-compiler": "^2.5.16"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "browserslist": [
+    "Firefox >= 20",
+    "Chrome >= 30",
+    "ie >= 9",
+    "Safari >= 6"
+  ]
+}

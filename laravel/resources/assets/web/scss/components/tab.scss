@@ -1,0 +1,58 @@
+/**
+ * 梯形便签 Tab
+ * trapezoidal notes
+ *
+ * html:
+ * <div class="gaoqi-tab-trapezoidal__wrapper">
+ *     <span>tab 1</span>
+ *     <span class="active">tab 2</span>
+ * </div>
+ */
+
+.gaoqi-tab-trapezoidal__wrapper {
+    margin: 0 3.6rem -2rem;
+    background-color: transparent;
+
+    span {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+
+        font-size: 1.4rem;
+        color: $main-color;
+        padding: 1em 1.4em .4em;
+
+        z-index: 1;
+        cursor: pointer;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+
+            color: $main-color;
+            background: #fff;
+
+            border: 1px solid #ccc;
+            border-bottom: none;
+            border-top-width: 2px;
+            border-radius: .4em .4em 0 0;
+
+            transform: perspective(1em) rotateX(5deg);
+            transform-origin: bottom;
+
+            z-index: -1;
+        }
+        &.active {
+            color: #fff;
+
+            &::before {
+                border-color: $shine-blue;
+                background-color: $shine-blue;
+            }
+        }
+    }
+}

@@ -1,0 +1,16 @@
+.gaoqi-dialog__reset {
+    .el-dialog__title {
+        color: $main-color;
+    }
+    .el-dialog--center .el-dialog__body {
+        padding: 2rem 4.6rem 3rem;
+    }
+
+    .el-dialog__headerbtn .el-dialog__close {
+        background-color: $main-color;
+        color: #fff;
+        border-radius: 50%;
+        padding: .4rem;
+        font-weight: bold;
+    }
+}

@@ -1,0 +1,71 @@
+.el-form--label-top {
+    .el-form-item {
+        &.is-required {
+            .el-form-item__label {
+                &:before {
+                    color: $main-warning !important;
+                    padding-right: .4rem;
+                }
+            }
+        }
+
+        &__label {
+            font-size: 1.6rem !important;
+            line-height: 1 !important;
+        }
+    }
+}
+
+.gaoqi-base-form__wrapper {
+    .el-form-item {
+        display: inline-block;
+
+        width: 46%;
+        margin-bottom: 2.6rem;
+    }
+
+    .el-input__inner {
+        border-radius: 2px;
+        border: 1px solid #ccc;
+        height: 36px;
+        line-height: 36px;
+    }
+
+    // reset textarea label style
+    .textarea-label {
+        border: 1px solid #ccc;
+
+        textarea {
+            border: 0;
+            height: 13rem;
+        }
+
+        .el-form-item__label {
+            width: 100%;
+            background: #F0F4F9;
+            text-align: center;
+            padding: 10px;
+        }
+    }
+}
+
+// reset disabled style
+.gaoqi-base-form__disabled {
+
+    .el-textarea.is-disabled .el-textarea__inner,
+    .el-input.is-disabled .el-input__inner,
+    .el-cascader.is-disabled .el-cascader__label {
+        color: #000;
+        border: 0;
+        background-color: transparent;
+        cursor: default;
+
+        &::placeholder {
+            color: transparent;
+        }
+    }
+
+    .el-cascader.is-disabled .el-input__suffix {
+        visibility: hidden;
+    }
+}

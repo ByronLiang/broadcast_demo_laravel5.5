@@ -1,0 +1,22 @@
+.gaoqi-table__wrapper {
+    .el-table__header-wrapper {
+        th:nth-of-type(6n+1) {
+            border-top: .4rem solid #9FB3D0;
+        }
+        th:nth-of-type(6n+2) {
+            border-top: .4rem solid #4DC3F9;
+        }
+        th:nth-of-type(6n+3) {
+            border-top: .4rem solid #71AAFF;
+        }
+        th:nth-of-type(6n+4) {
+            border-top: .4rem solid #3AD2AC;
+        }
+        th:nth-of-type(6n+5) {
+            border-top: .4rem solid #FFBF62;
+        }
+        th:nth-of-type(6n+6) {
+            border-top: .4rem solid #FF7474;
+        }
+    }
+}

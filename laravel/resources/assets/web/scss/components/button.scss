@@ -1,0 +1,127 @@
+%btn-style {
+    display: inline-block;
+
+    font-size: 1.6rem;
+    min-width: 8.4rem;
+    height: 3.6rem;
+    line-height: 3.6rem;
+
+    text-align: center;
+    vertical-align: middle;
+
+    color: #fff;
+    cursor: pointer;
+    border-radius: .2rem;
+}
+
+.btn-orange {
+    @extend %btn-style;
+    background-color: $main-warning;
+}
+
+.btn-light-blue {
+    @extend %btn-style;
+    background-color: $light-blue;
+}
+
+.btn-light-green {
+    @extend %btn-style;
+    background-color: $light-green;
+}
+
+.btn-shine-green {
+    @extend %btn-style;
+    background-color: $shine-green;
+}
+
+.btn-shine-blue {
+    @extend %btn-style;
+    background-color: $shine-blue;
+}
+
+.btn-plain-blue {
+    @extend %btn-style;
+    color: $dark-blue;
+    background-color: $plain-blue;
+}
+
+.btn-default {
+    @extend %btn-style;
+
+    color: $dark-blue;
+    padding: 0 2.6rem;
+    background-color: #fff;
+}
+
+.btn-light-grey {
+    @extend %btn-style;
+
+    background-color: #CBCBCB;
+}
+
+.btn-light-purple {
+    @extend %btn-style;
+    background-color: $light-purple;
+}
+
+// login, register submit button
+.btn-auth-submit {
+    position: relative;
+    width: 27.6rem;
+    height: 5rem;
+    line-height: 5rem;
+    color: #fff;
+    font-size: 1.8rem;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: .5rem;
+    background: $main-color;
+    cursor: pointer;
+    z-index: 1;
+
+    &::before,
+    &::after {
+        position: absolute;
+        bottom: 3px;
+        width: calc(50% - 20px);
+        height: 0;
+        background: transparent;
+        z-index: -1;
+        z-index: -1;
+        box-shadow: 0 0 8px 6px rgba(62, 112, 205, 0.5);
+        content: '';
+    }
+
+    &::before {
+        left: 14px;
+        transform: skew(0deg, -3deg);
+    }
+    &::after {
+        right: 14px;
+        transform: skew(0deg, 3deg);
+    }
+}
+
+.btn-captcha {
+    color: #fff;
+    font-size: 1.4rem;
+    padding: .8rem 1.4rem;
+    background: #FFA200;
+    border: 1px solid #E99400;
+    cursor: pointer;
+
+    // not allowed
+    &.is-forbid {
+        color: #666;
+        background: #ccc;
+        border: 1px solid #ccc;
+        cursor: not-allowed;
+    }
+}
+
+.btn-not-allow {
+    background: #ccc !important;
+    border-color: #ccc !important;
+    cursor: not-allowed;
+    color: #fff;
+}
