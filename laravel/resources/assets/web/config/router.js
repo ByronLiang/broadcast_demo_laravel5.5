@@ -10,24 +10,35 @@ module.exports = {
     mode: 'history',
     routes: [
         {
-            path: '/welcome',
-            name: 'Welcome',
+            path: '/login',
+            name: 'Login',
             component: lazyLoading('Welcome'),
         }, {
             path: '/',
             component: require('../components/layout/Container.vue'),
             redirect: {
-                name: 'Dashboard',
+                name: 'Home',
             },
             children: [
                 {
-                    name: 'Dashboard',
-                    path: 'dashboard',
+                    name: 'Home',
+                    path: 'home',
                     component: lazyLoading('Dashboard'),
                     meta: {
-                        title: '信息面板',
+                        title: '主页',
                     },
-                },
+                }, {
+                    name: 'ChatList',
+                    path: 'chat_list',
+                    component: lazyLoading('Chat/list'),
+                    meta: {
+                        title: '聊天室列表',
+                    },
+                }, {
+                    name: 'ChatRoom',
+                    path: 'chat_room',
+                    component: lazyLoading('Chat/room'),
+                }
             ],
         }, {
             path: '*',

@@ -9,6 +9,6 @@ class MyController extends Controller
 {
     public function getProfile()
     {
-    	
+        return \Response::success(auth()->user());
     }
 }

@@ -40,11 +40,18 @@ Vue.use(VueRouter);
 
 export const router = new VueRouter(require('./router'));
 router.beforeEach(async (to, from, next) => {
-    const checkRoute = from.path === '/' && !from.name && to.path !== '/welcome';
-    await store.dispatch('getMy');
+    // 调整校验路径方式
+    let checkRoute = ['/chat_room', '/my_profile', '/my_setting'];
+    const res = checkRoute.find((item) => to.path == item);
+    // const checkRoute = from.path === '/' && !from.name && to.path !== '/login';
+    // await store.dispatch('getMy');
 
-    if (checkRoute && !store.state.my) {
-        next('/welcome');
+    // if (checkRoute && !store.state.my) {
+    //     next('/login');
+    // }
+    await store.dispatch('getMy');
+    if (res && !store.state.my) {
+        next('/login');   
     }
     next();
 });

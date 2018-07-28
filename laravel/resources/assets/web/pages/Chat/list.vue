@@ -1,18 +1,12 @@
 <template>
     <div class="dashboard">
-    <router-link to="/chat_list">
-        <el-button type="text">聊天室列表</el-button>
-    </router-link>
+    <h2>Chat Room</h2>
     </div>
 </template>
 
 <script>
-import {Button} from 'element-ui';
-
 export default {
-    components: {
-        ElButton: Button
-    },
+    components: {},
     data() {
         return {};
     },
