@@ -2,10 +2,10 @@
     <div class="dashboard">
         <div style="margin-top: 10px;">
             <el-carousel :interval="4000" type="card" 
-                height="250px" :autoplay="false">
+                height="200px" :autoplay="false">
                 <el-carousel-item v-for="(item, index) in banner" :key="index">
-                    <img :src="item.url" height="250px" v-if="item.type == 1">
-                    <video :src="item.url" controls="controls" height="250px" 
+                    <img :src="item.url" height="200px" v-if="item.type == 1">
+                    <video :src="item.url" controls="controls" height="200px" 
                         v-if="item.type == 3"></video>
                 </el-carousel-item>
             </el-carousel>
@@ -20,9 +20,9 @@
                     :key="index">
                     <el-card>
                         <img :src="author.avatar" class="avatar">
-                        <div style="padding: 14px;">
+                        <div style="padding: 5px;">
                             <span>{{ author.name }}</span>
-                            <div style="margin-top: 13px;">
+                            <div style="margin-top: 5px;">
                                 <div class="time">{{ author.introduction }}</div>
                                 <el-button type="text" class="button">了解更多</el-button><br>
                                 <router-link :to="`/chat_room/${author.id}`">
@@ -72,7 +72,7 @@ export default {
 
 <style lang="scss">
     .dashboard {
-        width: 70%;
+        width: 80%;
         margin: 0 auto;
     }
     .el-carousel__item img {

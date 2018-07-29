@@ -111,7 +111,7 @@ export default {
 
 <style lang="css">
 .dashboard {
-    width: 70%;
+    width: 80%;
     margin: 0 auto;
 }
 .chat-message {

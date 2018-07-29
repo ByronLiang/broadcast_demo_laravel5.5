@@ -26,8 +26,8 @@ class AuthController extends Controller
     	$model = User::create([
     		'phone' => request('phone'),
     		'password' => request('password'),
-    		'avatar' => 'https://picsum.photos/100/34',
-    		'name' => 'Gray',
+    		'avatar' => 'https://picsum.photos/80/80?120',
+    		'name' => 'Lily',
     	]);
     	if ($model) {
     		Auth::login($model);
