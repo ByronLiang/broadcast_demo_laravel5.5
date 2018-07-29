@@ -73,7 +73,7 @@ Vue.prototype.$location = require('common/helpers/location');
 import {
     Loading,
     MessageBox,
-    // Notification,
+    Notification,
     Message,
     Tooltip,
     Card,
@@ -93,7 +93,7 @@ window.$ele = {
     $alert: MessageBox.alert,
     $confirm: MessageBox.confirm,
     $prompt: MessageBox.prompt,
-    // $notify: Notification,
+    $notify: Notification,
     $message: Message,
 };
 

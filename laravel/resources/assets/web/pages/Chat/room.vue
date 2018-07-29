@@ -2,7 +2,7 @@
     <div class="dashboard">
     <h2>{{ author.name }} 的 Chat Room</h2>
         <div>在线人数：<span>{{ usersInRoom.length }}</span></div>
-        <div class="chat-log">
+        <div class="chat-log" style="500px; overflow: auto">
             <div class="chat-message" v-for="message in messages"
                 :key="message.id">
                 <p>{{ message.message }}</p>
@@ -12,11 +12,12 @@
                 Nothing here yet!
             </div>
         </div>
-        <div class="chat-composer">
+        <div class="chat-composer" style="margin-top: 50px;">
             <el-input placeholder="Start typing your message..." 
-                v-model="messageText" @keyup.enter="sendMessage"></el-input>
-            <el-button class="btn btn-primary" 
-                @click="sendMessage">Send</el-button>
+                v-model="messageText" @keyup.enter="sendMessage">
+                    <el-button slot="append" icon="el-icon-message" 
+                        @click="sendMessage">Send</el-button>
+                </el-input>
         </div>
     </div>
 </template>
@@ -57,6 +58,21 @@ export default {
                 });
             }
         },
+        sendNotifation(user, type) {
+            if (type == 'leave') {
+                $ele.$notify({
+                    title: '消息',
+                    message: user.name + '离开了聊天室',
+                    duration: 0
+                });
+            } else if (type == 'join') {
+                $ele.$notify({
+                    title: '消息',
+                    message: user.name + '加入了聊天室',
+                    duration: 0
+                });
+            }
+        },
         initEcho() {
             Echo.join('chatroom')
                 .here((users) => {
@@ -65,12 +81,15 @@ export default {
                 })
                 .joining((user) => {
                     console.log(user);
+                    this.sendNotifation(user, 'join');
                     this.usersInRoom.push(user);
                 })
                 .leaving((user) => {
                     this.usersInRoom = this.usersInRoom.filter(u => u != user)
+                    this.sendNotifation(user, 'leave');
                 })
                 .listen('MessagePosted', (e) => {
+                    console.log(e.message.message);
                     this.messages.push({
                         message: e.message.message,
                         user: e.user
@@ -83,10 +102,7 @@ export default {
                 author: this.$route.params.id
             })
             .then((r) => {
-                this.messages.push({
-                    messages: this.messageText,
-                    users: r.user
-                });
+                this.messageText = '';
             });
         },
     },

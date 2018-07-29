@@ -31,6 +31,8 @@ class ChatController extends Controller
     		'user_id' => $user->id,
     		'message' => request('message'),
     	]);
+        $message['user'] = $user;
+        // dd($message);
     	// Announce that a new message has been posted
     	broadcast(new MessagePosted($message, $user))
     		->toOthers();
