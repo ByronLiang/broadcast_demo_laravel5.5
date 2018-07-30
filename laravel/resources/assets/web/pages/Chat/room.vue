@@ -74,7 +74,7 @@ export default {
             }
         },
         initEcho() {
-            Echo.join('chatroom')
+            Echo.join('chatroom' + this.$route.params.id)
                 .here((users) => {
                     console.log(users);
                     this.usersInRoom = users;

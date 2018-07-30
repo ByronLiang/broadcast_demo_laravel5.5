@@ -19,11 +19,13 @@ class MessagePosted implements ShouldBroadcast
 
     public $message;
     public $user;
+    public $authorId;
 
-    public function __construct(ChatMessage $message, User $user)
+    public function __construct(ChatMessage $message, User $user, $author_id)
     {
         $this->message = $message;
         $this->user = $user;
+        $this->authorId = $author_id;
     }
 
     /**
@@ -34,7 +36,7 @@ class MessagePosted implements ShouldBroadcast
     public function broadcastOn()
     {
         // return new Channel('chatroom');
-        return new PresenceChannel('chatroom');
-        // return new PrivateChannel('chatroom');
+        // return new PresenceChannel('chatroom');
+        return new PresenceChannel('chatroom'.$this->authorId);
     }
 }

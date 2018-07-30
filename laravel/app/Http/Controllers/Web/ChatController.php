@@ -12,8 +12,11 @@ class ChatController extends Controller
 {
     public function fetchChatRoomInfo()
     {
-    	$model = Author::with('messages.user')
-    		->findorFail(request('id'));
+    	$model = Author::with(['messages' => function ($q) {
+            // 显示最近五条消息
+            $q->with('user')->orderBy('created_at')->limit(5);
+        }])
+    	->findorFail(request('id'));
 
     	return \Response::success($model);
     }
@@ -34,7 +37,8 @@ class ChatController extends Controller
         $message['user'] = $user;
         // dd($message);
     	// Announce that a new message has been posted
-    	broadcast(new MessagePosted($message, $user))
+        // 传入当前的作者ID（信道ID）
+    	broadcast(new MessagePosted($message, $user, request('author')))
     		->toOthers();
     	
     	return \Response::success($user);
