@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Author;
 use App\Models\ChatMessage;
-use App\Events\MessagePosted;
+use App\Events\{MessagePosted, FinishedPurchase};
 
 class ChatController extends Controller
 {
@@ -42,5 +42,12 @@ class ChatController extends Controller
     		->toOthers();
     	
     	return \Response::success($user);
+    }
+
+    public function finishedPay()
+    {
+        broadcast(new FinishedPurchase(request('author')))
+            ->toOthers();
+        return \Response::success();
     }
 }

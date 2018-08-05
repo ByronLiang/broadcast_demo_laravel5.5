@@ -19,6 +19,9 @@
                         @click="sendMessage">Send</el-button>
                 </el-input>
         </div>
+        <div>
+            <el-button type="normal" @click="sendFinishedOrder">Buy it</el-button>
+        </div>
     </div>
 </template>
 
@@ -41,6 +44,7 @@ export default {
     created() {
         this.fetchData();
         this.initEcho();
+        // this.initPurchaseListen();
     },
     mounted() {
     },
@@ -94,7 +98,29 @@ export default {
                         message: e.message.message,
                         user: e.user
                     });
+                })
+                .listen('FinishedPurchase', (e) => {
+                    console.log(e);
+                    // this.messages.push({
+                    //     message: e.message.message,
+                    //     user: e.user
+                    // });
                 });
+        },
+        initPurchaseListen() {
+            Echo.join('chatroom' + this.$route.params.id)
+                .listen('FinishedPurchase', (e) => {
+                    console.log(e);
+                    // this.messages.push({
+                    //     message: e.message.message,
+                    //     user: e.user
+                    // });
+                });
+        },
+        sendFinishedOrder() {
+            API.get('pay_order?author=' + this.$route.params.id).then((r) => {
+                console.log('aa');
+            });
         },
         sendMessage() {
             API.post('/message', {
