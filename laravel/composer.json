@@ -35,7 +35,8 @@
         ],
         "psr-4": {
             "App\\": "app/",
-            "Ganguo\\": "ganguo/"
+            "Ganguo\\": "ganguo/",
+            "Broadcasting\\": "app/Broadcasting"
         }
     },
     "autoload-dev": {

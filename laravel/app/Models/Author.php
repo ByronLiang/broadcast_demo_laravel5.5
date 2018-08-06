@@ -8,4 +8,9 @@ class Author extends Model
     {
     	return $this->hasMany(ChatMessage::class);
     }
+
+    public function room()
+    {
+    	return $this->hasOne(AuthorChatRoom::class);
+    }
 }

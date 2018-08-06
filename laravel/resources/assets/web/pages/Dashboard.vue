@@ -18,14 +18,14 @@
             <el-row>
                 <el-col :span="12" v-for="(author, index) in authors" 
                     :key="index">
-                    <el-card>
+                    <el-card style="height: 220px;">
                         <img :src="author.avatar" class="avatar">
                         <div style="padding: 5px;">
                             <span>{{ author.name }}</span>
                             <div style="margin-top: 5px;">
                                 <div class="time">{{ author.introduction }}</div>
-                                <el-button type="text" class="button">了解更多</el-button><br>
-                                <router-link :to="`/chat_room/${author.id}`">
+                                <el-button type="text" class="button">了解更多</el-button>
+                                <router-link :to="`/chat_room/${author.id}`" v-show="author.room">
                                     <el-button type="text" class="button">与他们聊天</el-button>
                                 </router-link>
                             </div>

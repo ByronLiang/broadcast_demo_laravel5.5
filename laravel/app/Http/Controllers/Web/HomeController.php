@@ -12,8 +12,8 @@ class HomeController extends Controller
     public function index()
     {
     	$banner = Banner::where('status', 1)->get();
-    	$author = Author::limit(6)->get();
+    	$author = Author::with('room')->limit(6)->get();
 
-    	return \Response::success(compact('banner', 'author'));
+    	return \Response::success(compact('banner', 'author', 'index'));
     }
 }
