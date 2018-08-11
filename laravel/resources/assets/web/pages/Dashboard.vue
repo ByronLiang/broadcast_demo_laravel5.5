@@ -28,6 +28,9 @@
                                 <router-link :to="`/chat_room/${author.id}`" v-show="author.room">
                                     <el-button type="text" class="button">与他们聊天</el-button>
                                 </router-link>
+                                <div v-show="author.room && author.room.listener == 'pay_user'">
+                                    会员用户专享
+                                </div>
                             </div>
                       </div>
                     </el-card>

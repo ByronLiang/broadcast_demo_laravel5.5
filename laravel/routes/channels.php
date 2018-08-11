@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Author;
 /*
 |--------------------------------------------------------------------------
 | Broadcast Channels
@@ -16,5 +17,10 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
 });
 
 Broadcast::channel('chatroom{authorId}', function ($user, $authorId) {
-    return $user;
+	$author = Author::with('room')->findorFail($authorId);
+	if ($author->room->listener == 'pay_user') {
+		return false;
+	} else {
+    	return $user;
+    }
 });
