@@ -39,7 +39,11 @@
     "vue-router": "^3.0.1",
     "vue-smooth-picker": "^0.3.7",
     "vue-swipe": "^2.4.0",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "vuedraggable": "^2.16.0",
+    "spark-md5": "^3.0.0",
+    "videojs-offset": "^2.0.0-beta.2",
+    "videojs-vjsdownload": "^1.0.3"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",
