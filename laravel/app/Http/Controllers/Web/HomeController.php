@@ -16,4 +16,10 @@ class HomeController extends Controller
 
     	return \Response::success(compact('banner', 'author', 'index'));
     }
+
+    public function test(Request $request)
+    {
+    	$a = collect(['hi', 'dear'])->ac();
+    	dd($a);
+    }
 }

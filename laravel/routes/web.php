@@ -14,7 +14,7 @@ Route::group(['middleware' => ['spa:web']], function () {
 		Route::get('pay_order', 'ChatController@finishedPay');
 		Route::resource('message', 'ChatController');
 	});
-
+	Route::get('test', 'HomeController@test');
 	// Route::get('/welcome', function () {
 	//     return view('welcome');
 	// });

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API;
 use JSend;
 use Illuminate\Http\Request;
 use App\Models\Type;
-use App\Http\Controllers\RESTfulTrait;
+// use App\Http\Controllers\RESTfulTrait;
 // use Illuminate\Routing\Controller;
 
 class TypeController extends Controller
