@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use App\Models\Author;
+use App\Services\ExcelService;
 
 class HomeController extends Controller
 {
@@ -19,7 +20,10 @@ class HomeController extends Controller
 
     public function test(Request $request)
     {
-    	$a = collect(['hi', 'dear'])->ac();
-    	dd($a);
+    	// $a = collect(['hi', 'dear'])->ac();
+    	// dd($a);
+        $excel = new ExcelService();
+        $excel->test();
+        dd('aa');
     }
 }

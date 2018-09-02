@@ -36,7 +36,8 @@
         "psr-4": {
             "App\\": "app/",
             "Ganguo\\": "ganguo/",
-            "Broadcasting\\": "app/Broadcasting"
+            "Broadcasting\\": "app/Broadcasting",
+            "Filter\\": "app/ExcelFilter"
         }
     },
     "autoload-dev": {
