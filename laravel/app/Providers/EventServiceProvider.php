@@ -16,9 +16,13 @@ class EventServiceProvider extends ServiceProvider
         // 'App\Events\Event' => [
         //     'App\Listeners\EventListener',
         // ],
-        'App\Events\PaperView' => [
-            'App\Listeners\PaperViewNotification',
-        ],
+        // 'App\Events\PaperView' => [
+        //     'App\Listeners\PaperViewNotification',
+        // ],
+    ];
+
+    protected $subscribe = [
+         'App\Listeners\UserEventSubscriber',
     ];
 
     /**

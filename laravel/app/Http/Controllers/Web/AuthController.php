@@ -35,4 +35,11 @@ class AuthController extends Controller
 
     	return \Response::success($model);
     }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return \Response::success();
+    }
 }

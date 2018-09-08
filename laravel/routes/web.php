@@ -7,6 +7,7 @@ Route::group(['middleware' => ['spa:web']], function () {
 		Route::get('profile', 'MyController@getProfile');
 	});
 	Route::post('login', 'AuthController@postLogin');
+	Route::get('logout', 'AuthController@logout');
 	Route::post('register', 'AuthController@postRegister');
 	Route::resource('home', 'HomeController');
 	Route::group(['middleware' => 'auth:web'], function () {

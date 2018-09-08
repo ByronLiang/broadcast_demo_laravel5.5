@@ -26,6 +26,6 @@ class PaperViewNotification
      */
     public function handle(PaperView $event)
     {
-        //
+        \Log::info('listener');
     }
 }

@@ -86,9 +86,11 @@ export default {
     },
     methods: {
         onLogout() {
-            this.popoverVisible = false;
-            this.$router.push({
-                name: 'Welcome',
+            API.get('/logout').then((r) => {
+                this.popoverVisible = true;
+                this.$router.push({
+                    name: 'Home',
+                });
             });
         },
     },

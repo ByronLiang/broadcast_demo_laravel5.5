@@ -54,7 +54,7 @@ export default class {
             case 401:
                 msg = '未登录，请登录后操作';
                 SessionStore.clearAll();
-                vm.$router.push('/welcome');
+                vm.$router.push('/login');
                 break;
             case 422:
                 if (res.errors instanceof Object) {
