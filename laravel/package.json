@@ -11,10 +11,6 @@
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "*.{js,vue}": [
-      "eslint --fix --ignore-path .gitignore --ignore-path .eslintignore",
-      "git add"
-    ],
     "*.php": [
       "php -l"
     ]

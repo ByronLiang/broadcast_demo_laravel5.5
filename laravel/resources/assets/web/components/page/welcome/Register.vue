@@ -62,7 +62,9 @@ export default {
                 this.$router.push('/');
             }).catch((err) => {
                 $ele.$message.error('注册失败， 原因：' + err);
-            }).finally(() => {this.logging = false});
+            }).finally(() => {
+                this.logging = false;
+            });
         },
     },
 };

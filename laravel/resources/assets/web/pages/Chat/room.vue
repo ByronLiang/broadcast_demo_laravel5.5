@@ -13,9 +13,9 @@
             </div>
         </div>
         <div class="chat-composer" style="margin-top: 50px;">
-            <el-input placeholder="Start typing your message..." 
+            <el-input placeholder="Start typing your message..."
                 v-model="messageText" @keyup.enter="sendMessage">
-                    <el-button slot="append" icon="el-icon-message" 
+                    <el-button slot="append" icon="el-icon-message"
                         @click="sendMessage">Send</el-button>
                 </el-input>
         </div>
@@ -53,13 +53,13 @@ export default {
             if (this.$route.params.id) {
                 API.get('chat_info', {
                     params: {
-                        id: this.$route.params.id
-                    }
+                        id: this.$route.params.id,
+                    },
                 })
-                .then((r) => {
-                    this.author = r;
-                    this.messages = r.messages;
-                });
+                    .then((r) => {
+                        this.author = r;
+                        this.messages = r.messages;
+                    });
             }
         },
         sendNotifation(user, type) {
@@ -67,13 +67,13 @@ export default {
                 $ele.$notify({
                     title: '消息',
                     message: user.name + '离开了聊天室',
-                    duration: 0
+                    duration: 0,
                 });
             } else if (type == 'join') {
                 $ele.$notify({
                     title: '消息',
                     message: user.name + '加入了聊天室',
-                    duration: 0
+                    duration: 0,
                 });
             }
         },
@@ -89,14 +89,14 @@ export default {
                     this.usersInRoom.push(user);
                 })
                 .leaving((user) => {
-                    this.usersInRoom = this.usersInRoom.filter(u => u != user)
+                    this.usersInRoom = this.usersInRoom.filter((u) => u != user);
                     this.sendNotifation(user, 'leave');
                 })
                 .listen('MessagePosted', (e) => {
                     console.log(e.message.message);
                     this.messages.push({
                         message: e.message.message,
-                        user: e.user
+                        user: e.user,
                     });
                 })
                 .listen('FinishedPurchase', (e) => {
@@ -125,11 +125,11 @@ export default {
         sendMessage() {
             API.post('/message', {
                 message: this.messageText,
-                author: this.$route.params.id
+                author: this.$route.params.id,
             })
-            .then((r) => {
-                this.messageText = '';
-            });
+                .then((r) => {
+                    this.messageText = '';
+                });
         },
     },
 };

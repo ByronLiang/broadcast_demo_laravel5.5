@@ -51,7 +51,7 @@ router.beforeEach(async (to, from, next) => {
     // }
     await store.dispatch('getMy');
     if (res && !store.state.my) {
-        next('/login');   
+        next('/login');
     }
     next();
 });
@@ -105,12 +105,12 @@ import Api from '../api';
  */
 window.API = new Api('/');
 
-import Pusher from "pusher-js"
-import Echo from "laravel-echo"
+import Pusher from 'pusher-js';
+import Echo from 'laravel-echo';
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
     key: '53152d6ab8ba731ffde1',
     cluster: 'ap1',
-    encrypted: true
+    encrypted: true,
 });

@@ -1,11 +1,11 @@
 <template>
     <div class="dashboard">
         <div style="margin-top: 10px;">
-            <el-carousel :interval="4000" type="card" 
+            <el-carousel :interval="4000" type="card"
                 height="200px" :autoplay="false">
                 <el-carousel-item v-for="(item, index) in banner" :key="index">
                     <img :src="item.url" height="200px" v-if="item.type == 1">
-                    <video :src="item.url" controls="controls" height="200px" 
+                    <video :src="item.url" controls="controls" height="200px"
                         v-if="item.type == 3"></video>
                 </el-carousel-item>
             </el-carousel>
@@ -16,7 +16,7 @@
         <div>
             <h3>作者们</h3>
             <el-row>
-                <el-col :span="12" v-for="(author, index) in authors" 
+                <el-col :span="12" v-for="(author, index) in authors"
                     :key="index">
                     <el-card style="height: 220px;">
                         <img :src="author.avatar" class="avatar">
@@ -67,7 +67,7 @@ export default {
             API.get('home').then((r) => {
                 this.banner = r.banner;
                 this.authors = r.author;
-            })
+            });
         },
     },
 };
@@ -86,11 +86,11 @@ export default {
         margin: 0;
         width: 100%;
     }
-  
+
     .el-carousel__item:nth-child(2n) {
         background-color: #99a9bf;
     }
-  
+
     .el-carousel__item:nth-child(2n+1) {
         background-color: #d3dce6;
     }
