@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Type;
 // use App\Http\Controllers\RESTfulTrait;
 // use Illuminate\Routing\Controller;
+use App\Events\PaperView;
 
 class TypeController extends Controller
 {
@@ -35,5 +36,25 @@ class TypeController extends Controller
         $data = Type::filter($request->all())->limit(5)->get();
 
         return \Response::success($data);
+    }
+
+    /**
+     * @OAS\Get(path="/event",tags={"Type"},
+        summary="Test some Event",description="",
+     * @OAS\Parameter(name="id",in="query",description="分类ID",required=false,
+     * @OAS\Schema(type="integer",format="int10")),
+     * @OAS\Parameter(name="name",in="query",description="分类名称",required=false,
+     * @OAS\Schema(type="string")),
+     * @OAS\Response(response=200,description="successful operation"),
+     * security={{"bearerAuth": {}}},
+     *   
+     * )
+     *
+	**/
+    public function getEvent()
+    {
+        event(new PaperView('abc'));
+
+        return \Response::success();
     }
 }

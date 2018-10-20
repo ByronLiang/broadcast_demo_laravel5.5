@@ -8,9 +8,10 @@ use App\Events\PaperView;
 
 class UserEventSubscriber
 {
-    public function onPaperView()
+    public function onPaperView($event)
     {
         \Log::info('PaperView Eventss');
+        \Log::info('the word is '. $event->word);
     }
     /**
      * 处理用户登录事件.

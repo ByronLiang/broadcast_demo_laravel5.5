@@ -7,3 +7,4 @@ Route::group(['middleware' => 'auth:api,web'], function () {
 
 });
 Route::get('type', 'TypeController@getIndex');
+Route::get('event', 'TypeController@getEvent');

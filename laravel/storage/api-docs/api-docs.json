@@ -51,6 +51,47 @@
                     }
                 ]
             }
+        },
+        "/event": {
+            "get": {
+                "tags": [
+                    "Type"
+                ],
+                "summary": "Test some Event",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\API\\TypeController::getEvent",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "\u5206\u7c7bID",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int10"
+                        }
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "\u5206\u7c7b\u540d\u79f0",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
         }
     },
     "components": {
