@@ -101,6 +101,57 @@
                 ]
             }
         },
+        "/send_mail": {
+            "get": {
+                "tags": [
+                    "Notification"
+                ],
+                "summary": "Notification Test",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\API\\NotificationController::sendMail",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "\u5206\u7c7bID",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int10"
+                        }
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "\u5206\u7c7b\u540d\u79f0",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/send_sms": {
+            "get": {
+                "tags": [
+                    "Notification"
+                ],
+                "summary": "Notification Test from SMS",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\API\\NotificationController::SmsMessage",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
         "/type": {
             "get": {
                 "tags": [

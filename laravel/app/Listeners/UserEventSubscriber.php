@@ -5,6 +5,9 @@ namespace App\Listeners;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Events\PaperView;
+use Notification;
+use App\Notifications\TestMessage;
+use App\Models\{DouBanBook, User};
 
 class UserEventSubscriber
 {
@@ -12,6 +15,10 @@ class UserEventSubscriber
     {
         \Log::info('PaperView Eventss');
         \Log::info('the word is '. $event->word);
+        // $user = User::find(2);
+        // $book = DoubanBook::find(1);
+        // Notification::route('mail', 'byron@ganguo.hk')
+        //     ->notify(new TestMessage($book));
     }
     /**
      * 处理用户登录事件.
