@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Notifications\{TestMessage, SmsMessage};
+use App\Notifications\{TestMessage, SmsMessage, SystemMessage};
 use App\Models\{DouBanBook, User};
 use Notification;
 
@@ -44,5 +44,43 @@ class NotificationController extends Controller
             ->notify(new SmsMessage());
 
         return \Response::success();
+    }
+
+    /**
+     * @OAS\Get(path="/send_system_msg",tags={"Notification"},
+        summary="Notification Test from System Message",description="",
+     * @OAS\Response(response=200,description="successful operation"),
+     *   
+     * )
+     *
+	**/
+    public function systemMessage()
+    {
+        $users = User::all();
+        Notification::send($users, new SystemMessage());
+
+        return \Response::success();
+    }
+
+    /**
+     * @OAS\Get(path="/check_system_msg",tags={"Notification"},
+        summary="Notification Test from Check System Message",description="",
+     * @OAS\Response(response=200,description="successful operation"),
+     *   
+     * )
+     *
+	**/
+    public function checkNotification()
+    {
+        $user = User::find(1);
+        // 全部的消息数目
+        $data = $user->notifications;
+        // 当前用户的未读消息数目
+        $unread_count = $user->unreadNotifications->count();
+
+        return \Response::success([
+            'message' => $data,
+            'unread_count' => $unread_count,
+        ]);
     }
 }

@@ -152,6 +152,36 @@
                 }
             }
         },
+        "/send_system_msg": {
+            "get": {
+                "tags": [
+                    "Notification"
+                ],
+                "summary": "Notification Test from System Message",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\API\\NotificationController::systemMessage",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/check_system_msg": {
+            "get": {
+                "tags": [
+                    "Notification"
+                ],
+                "summary": "Notification Test from Check System Message",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\API\\NotificationController::checkNotification",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
         "/type": {
             "get": {
                 "tags": [
