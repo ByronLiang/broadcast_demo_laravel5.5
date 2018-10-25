@@ -41,6 +41,7 @@ export default {
                 password: '',
                 remember: false,
             },
+            captcha: '',
             rules: {
                 phone: [
                     {required: true, message: '请输入手机号', trigger: 'blur'},
@@ -70,8 +71,14 @@ export default {
                 }).finally(() => this.isBtnLoading = false);
             });
         },
+        // 获取生成验证码的图片链接
+        createCaptchaUrl() {
+            this.captcha = '/captcha/default?t=' + Date.now();
+        },
     },
     mounted() {
+        this.createCaptchaUrl();
+        console.log(this.captcha);
     },
 };
 </script>
