@@ -57,4 +57,9 @@ class TypeController extends Controller
 
         return \Response::success();
     }
+
+    public function test()
+    {
+        
+    }
 }
