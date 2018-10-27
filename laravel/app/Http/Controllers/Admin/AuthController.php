@@ -16,9 +16,27 @@ class AuthController extends Controller
         return \Response::error('账号或者密码错误');
     }
 
-    public function getCaptcha(EmaillService $email)
+    public function getCaptcha()
     {
+        switch (request('type')) {
+            case 'email':
+                return $this->getEmailCaptcha();
+            case 'pic':
+                return $this->getPicCaptcha();
+            default:
+                return $this->getPicCaptcha();
+        }
+    }
 
+    protected function getPicCaptcha()
+    {
+        $captcha = captcha_src();
+
+        return \Response::success(compact('captcha'));
+    }
+
+    protected function getEmailCaptcha(EmaillService $email)
+    {
         $captcha = rand(1111, 9999);
         // 邮箱发送验证码
         $email->sendMail(request('account'), $captcha, '邮箱验证码');

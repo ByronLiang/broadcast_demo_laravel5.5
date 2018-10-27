@@ -9,6 +9,10 @@
                 <el-form-item prop="password">
                     <el-input placeholder="请输入密码" type="password" v-model="form.password"></el-input>
                 </el-form-item>
+                <el-form-item class="flex items-center">
+                    <el-input class="mr-1 captcha" placeholder="输入验证码" v-model="form.captcha"></el-input>
+                    <img :src="captcha" @click="createCaptchaUrl">
+                </el-form-item>
                 <el-form-item>
                     <el-switch v-model="form.remember" active-text="下次免登录"></el-switch>
                     <router-link class="float-right" to="/reset-passwd">
@@ -40,6 +44,7 @@ export default {
                 phone: '',
                 password: '',
                 remember: false,
+                captcha_type: 'pic',
             },
             captcha: '',
             rules: {
@@ -73,12 +78,22 @@ export default {
         },
         // 获取生成验证码的图片链接
         createCaptchaUrl() {
-            this.captcha = '/captcha/default?t=' + Date.now();
+            API.get('auth/captcha', {params: {type: this.form.captcha_type}}).then((res) => {
+                this.captcha = res.captcha;
+                console.log(this.captcha);
+            });
+            // this.captcha = '/captcha/default?t=' + Date.now();
+        },
+        // 随机产生验证码校验方式 图形校验 邮箱校验
+        createCaptchaType() {
+            let captcha = ['pic', 'email'];
+            this.form.captcha_type = captcha[parseInt(Math.random() * 2)];
         },
     },
     mounted() {
-        this.createCaptchaUrl();
-        console.log(this.captcha);
+        // this.createCaptchaType();
+        this.createCaptchaUrl(this.form.captcha_type);
+        console.log(this.form.captcha_type);
     },
 };
 </script>
@@ -91,12 +106,10 @@ export default {
         justify-content: center;
         align-items: center;
         background: #e1e2e2;
-
         .el-card{
             width: 100%;
             max-width: 400px;
         }
-
         .title {
             color: #20a0ff;
             font-weight: bold;
@@ -105,9 +118,11 @@ export default {
             line-height: 2.2;
             font-family: sans-serif;
         }
-
         .center .el-button{
             width: 100%;
+        }
+        .el-input.captcha {
+            width: 200px;
         }
     }
 </style>
