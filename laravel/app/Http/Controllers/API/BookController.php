@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Models\DouBanBook;
 use App\Services\DouBanDataService;
+use App\Http\Requests\API\UpdateBookRequest;
 
 class BookController extends Controller
 {
@@ -52,7 +53,11 @@ class BookController extends Controller
     public function store()
     {
         $douban = new DouBanDataService();
-        $books = $douban->fetcheBookData(request('name'), request('start'), request('count'));
+        $books = $douban->fetcheBookData(
+            request('name'), 
+            request('start'), 
+            request('count')
+        );
         foreach($books as $book) {
             DouBanBook::create([
                 'title' => $book['title'] ?? '',
@@ -67,9 +72,30 @@ class BookController extends Controller
         return \Response::success();
     }
 
-    public function update()
+    /**
+     * @OAS\Put(path="/books/{id}",tags={"Book"},
+        summary="update dou ban book data",description="",
+     *  @OAS\Parameter(name="id",in="path",description="bookId",required=true,
+     *      @OAS\Schema(type="integer",format="int10")),
+     *  @OAS\RequestBody(required=true,description="",
+     *     @OAS\MediaType(mediaType="application/json",
+     *        @OAS\Items(ref="#/components/schemas/UpdateBookRequest")
+     *     )
+     *  ),
+     * @OAS\Response(response=200,description="successful operation"),
+     * security={{"bearerAuth": {}}},
+     *   
+     * )
+     *
+	**/
+    public function update(UpdateBookRequest $requset, $id)
     {
-
+        DouBanBook::find($id)
+            ->update([
+                'title' => $requset->content,
+            ]);
+        
+            return \Response::success();
     }
 
     public function destory()

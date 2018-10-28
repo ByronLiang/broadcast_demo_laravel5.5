@@ -101,6 +101,49 @@
                 ]
             }
         },
+        "/books/{id}": {
+            "put": {
+                "tags": [
+                    "Book"
+                ],
+                "summary": "update dou ban book data",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\API\\BookController::update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "bookId",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int10"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateBookRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/send_mail": {
             "get": {
                 "tags": [
@@ -266,6 +309,21 @@
         }
     },
     "components": {
+        "schemas": {
+            "UpdateBookRequest": {
+                "required": [
+                    "title"
+                ],
+                "properties": {
+                    "title": {
+                        "description": "\u5185\u5bb9",
+                        "type": "string",
+                        "example": ""
+                    }
+                },
+                "type": "object"
+            }
+        },
         "securitySchemes": {
             "bearerAuth": {
                 "type": "http",
