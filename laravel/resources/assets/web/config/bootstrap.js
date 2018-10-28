@@ -105,12 +105,18 @@ import Api from '../api';
  */
 window.API = new Api('/');
 
-import Pusher from 'pusher-js';
+// import Pusher from 'pusher-js';
 import Echo from 'laravel-echo';
+window.io = require('socket.io-client');
+
+// window.Echo = new Echo({
+//     broadcaster: 'pusher',
+//     key: '53152d6ab8ba731ffde1',
+//     cluster: 'ap1',
+//     encrypted: true,
+// });
 
 window.Echo = new Echo({
-    broadcaster: 'pusher',
-    key: '53152d6ab8ba731ffde1',
-    cluster: 'ap1',
-    encrypted: true,
+    broadcaster: 'socket.io',
+    host: window.location.hostname + ':6001'
 });
