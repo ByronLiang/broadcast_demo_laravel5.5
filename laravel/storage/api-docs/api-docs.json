@@ -225,6 +225,67 @@
                 }
             }
         },
+        "/basic_key": {
+            "get": {
+                "tags": [
+                    "Redis"
+                ],
+                "summary": "save or get redis data",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\API\\RedisController::getKey",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "\u5206\u7c7bID",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int10"
+                        }
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "\u5206\u7c7b\u540d\u79f0",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/store_key": {
+            "get": {
+                "tags": [
+                    "Redis"
+                ],
+                "summary": "store data to redis",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\API\\RedisController::storeKey",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/type": {
             "get": {
                 "tags": [
