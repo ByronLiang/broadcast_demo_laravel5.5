@@ -11,6 +11,56 @@
         }
     ],
     "paths": {
+        "/articles": {
+            "get": {
+                "tags": [
+                    "Articel"
+                ],
+                "summary": "get article data to redis",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\API\\ArticleController::index",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "\u5206\u9875",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int10"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Articel"
+                ],
+                "summary": "store article data to redis",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\API\\ArticleController::store",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/books": {
             "get": {
                 "tags": [

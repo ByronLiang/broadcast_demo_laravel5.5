@@ -10,6 +10,7 @@ Route::get('type', 'TypeController@getIndex');
 Route::get('event', 'TypeController@getEvent');
 Route::resources([
     'books' => 'BookController',
+    'articles' => 'ArticleController',
 ]);
 
 // 通知
