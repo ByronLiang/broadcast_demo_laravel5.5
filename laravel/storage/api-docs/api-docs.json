@@ -275,6 +275,21 @@
                 }
             }
         },
+        "/custom_redis_msg": {
+            "get": {
+                "tags": [
+                    "Notification"
+                ],
+                "summary": "Notification Test from Check System Message",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\API\\NotificationController::customNotification",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
         "/basic_key": {
             "get": {
                 "tags": [

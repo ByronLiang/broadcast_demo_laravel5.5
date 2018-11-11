@@ -18,6 +18,7 @@ Route::get('send_mail', 'NotificationController@sendMail');
 Route::get('send_sms', 'NotificationController@SmsMessage');
 Route::get('send_system_msg', 'NotificationController@systemMessage');
 Route::get('check_system_msg', 'NotificationController@checkNotification');
+Route::get('custom_redis_msg', 'NotificationController@customNotification');
 
 // Redis
 Route::get('basic_key', 'RedisController@getKey');

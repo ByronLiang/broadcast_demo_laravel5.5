@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Notifications\{TestMessage, SmsMessage, SystemMessage};
+use App\Notifications\{TestMessage, SmsMessage, SystemMessage, RedisMessage};
 use App\Models\{DouBanBook, User};
 use Notification;
 
@@ -82,5 +82,22 @@ class NotificationController extends Controller
             'message' => $data,
             'unread_count' => $unread_count,
         ]);
+    }
+
+    /**
+     * @OAS\Get(path="/custom_redis_msg",tags={"Notification"},
+        summary="Custom Notification Driver Test",description="",
+     * @OAS\Response(response=200,description="successful operation"),
+     *   
+     * )
+     *
+	**/
+    public function customNotification()
+    {
+        // $users = User::find(1);
+        $users = User::all();
+        Notification::send($users, new RedisMessage());
+
+        return \Response::success();
     }
 }
