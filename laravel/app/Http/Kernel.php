@@ -60,5 +60,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'spa' => \App\Http\Middleware\SinglePageWebApplication::class,
         'auth.driver' => \App\Http\Middleware\AuthDriverMiddleware::class,
+        'cors' => \App\Http\Middleware\Cors::class,
     ];
 }
