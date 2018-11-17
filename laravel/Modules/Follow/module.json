@@ -1,0 +1,15 @@
+{
+    "name": "Follow",
+    "alias": "follow",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\Follow\\Providers\\FollowServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+    ],
+    "requires": []
+}

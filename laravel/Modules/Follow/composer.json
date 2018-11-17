@@ -1,0 +1,25 @@
+{
+    "name": "ganguo/follow",
+    "description": "",
+    "authors": [
+        {
+            "name": "ganguo",
+            "email": "g@ganguo.io"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Follow\\Providers\\FollowServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Follow\\": ""
+        }
+    }
+}
