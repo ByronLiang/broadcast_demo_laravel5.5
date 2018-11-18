@@ -194,6 +194,68 @@
                 ]
             }
         },
+        "/follows": {
+            "get": {
+                "tags": [
+                    "Follow"
+                ],
+                "summary": "fetch the follower from an author data",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\API\\FollowController::index",
+                "parameters": [
+                    {
+                        "name": "author_id",
+                        "in": "query",
+                        "description": "author_ID",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int10"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Follow"
+                ],
+                "summary": "store follow or unfollow the author",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\API\\FollowController::store",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "author id ",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int10"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/send_mail": {
             "get": {
                 "tags": [
@@ -280,7 +342,7 @@
                 "tags": [
                     "Notification"
                 ],
-                "summary": "Notification Test from Check System Message",
+                "summary": "Custom Notification Driver Test",
                 "description": "",
                 "operationId": "App\\Http\\Controllers\\API\\NotificationController::customNotification",
                 "responses": {

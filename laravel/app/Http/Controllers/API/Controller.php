@@ -21,7 +21,7 @@ abstract class Controller extends \App\Http\Controllers\Controller
     /**
      * @var \Illuminate\Contracts\Auth\Authenticatable|null|\App\Models\User
      */
-    private $my;
+    protected $my;
 
     public function __construct()
     {

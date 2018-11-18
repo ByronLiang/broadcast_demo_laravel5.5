@@ -3,8 +3,10 @@
  * API路由，url前缀 api
  */
 
-Route::group(['middleware' => 'auth:api,web'], function () {
-
+Route::group(['middleware' => 'auth:api'], function () {
+	Route::resources([
+		'follows' => 'FollowController',
+	]);
 });
 Route::get('type', 'TypeController@getIndex');
 Route::get('event', 'TypeController@getEvent');
