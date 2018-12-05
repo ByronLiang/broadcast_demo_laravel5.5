@@ -61,6 +61,32 @@
                 ]
             }
         },
+        "/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "login the system",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\API\\AuthController::login",
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AuthRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
         "/books": {
             "get": {
                 "tags": [
@@ -498,6 +524,25 @@
     },
     "components": {
         "schemas": {
+            "AuthRequest": {
+                "required": [
+                    "phone",
+                    "password"
+                ],
+                "properties": {
+                    "phone": {
+                        "description": "phone",
+                        "type": "string",
+                        "example": ""
+                    },
+                    "password": {
+                        "description": "password",
+                        "type": "string",
+                        "example": ""
+                    }
+                },
+                "type": "object"
+            },
             "UpdateBookRequest": {
                 "required": [
                     "title"

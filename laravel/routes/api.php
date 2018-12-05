@@ -25,3 +25,6 @@ Route::get('custom_redis_msg', 'NotificationController@customNotification');
 // Redis
 Route::get('basic_key', 'RedisController@getKey');
 Route::get('store_key', 'RedisController@storeKey');
+
+Route::post('login', 'AuthController@login');
+Route::get('login_show', 'AuthController@showLoginForm');
