@@ -32,6 +32,8 @@ class AuthController extends Controller
         // the IP address of the client making these requests into this application.
         if ($this->hasTooManyLoginAttempts($request)) {
             // $this->fireLockoutEvent($request);
+            // 触发限制的登录失败次数才开始进行计时
+            $this->startLimitLogin($request);
 
             return $this->sendLockoutResponse($request);
         }
@@ -68,5 +70,12 @@ class AuthController extends Controller
         );
 
         return \Response::error(Lang::get('auth.throttle', ['seconds' => $seconds]));
+    }
+
+    protected function startLimitLogin(AuthRequest $request)
+    {
+        $this->limiter()->start(
+            $this->throttleKey($request), $this->decayMinutes()
+        );
     }
 }
