@@ -378,6 +378,42 @@
                 }
             }
         },
+        "/pay": {
+            "get": {
+                "tags": [
+                    "Pay"
+                ],
+                "summary": "Just some data list",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\API\\PayController::pay",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "\u5206\u7c7bID",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int10"
+                        }
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "\u5206\u7c7b\u540d\u79f0",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
         "/basic_key": {
             "get": {
                 "tags": [

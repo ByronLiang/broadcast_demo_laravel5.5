@@ -6,3 +6,6 @@
 //Route::get('/', function () {
 //    return view('welcome');
 //});
+
+Route::any('/pay/{channel}', 'PayController@callback');
+Route::any('/pay/return', 'PayController@returnCallback');

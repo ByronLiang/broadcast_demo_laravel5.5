@@ -39,4 +39,8 @@ return [
         'secret' => env('NEXMO_SECRET'),
         'sms_from' => env('SMS_FROM'),
     ],
+    'payssion' => [
+        'api_key' => env('PAYSSSION_KEY'),
+        'api_secret' => env('PAYSSSION_SECRET'),
+    ],
 ];
