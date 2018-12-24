@@ -17,7 +17,7 @@ class GitHubFactory implements FactoryInterface
     {
         if (request('state')) {
             if (request('code')) {
-                \Log::info('github callback request: '. request()->all());
+                \Log::info('github callback request: '. json_encode(request()->all()));
                 $this->user = $this->socialite->stateless()->user();
 
                 return true;

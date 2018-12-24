@@ -25,9 +25,10 @@ Route::get('custom_redis_msg', 'NotificationController@customNotification');
 // Redis
 Route::get('basic_key', 'RedisController@getKey');
 Route::get('store_key', 'RedisController@storeKey');
-
-Route::post('login', 'AuthController@login');
-Route::get('login_show', 'AuthController@showLoginForm');
-Route::get('oauth/{provider}', 'AuthController@getOauth');
+Route::group(['middleware' => 'web'], function () {
+	Route::post('login', 'AuthController@login');
+	Route::get('login_show', 'AuthController@showLoginForm');
+	Route::get('oauth/{provider}', 'AuthController@getOauth');
+});
 
 Route::get('pay', 'PayController@pay');

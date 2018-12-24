@@ -13,6 +13,7 @@ class Factory
         switch ($provider) {
             case 'github':
                 $this->platform = (new GitHubFactory());
+                break;
             default:
                 abort(400, '不支持此登录模式');
                 break;

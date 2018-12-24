@@ -94,7 +94,6 @@ class AuthController extends Controller
     {
         $return = request('return');
         $return = $return ?: 'https://www.baidu.com';
-
         $res = (new \Modules\Socialite\Platforms\Factory($provider))->handle($return);
 
         if ($res instanceof \Modules\Socialite\Entities\Socialite) {
