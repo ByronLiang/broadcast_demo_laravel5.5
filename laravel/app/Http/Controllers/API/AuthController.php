@@ -78,4 +78,58 @@ class AuthController extends Controller
             $this->throttleKey($request), $this->decayMinutes()
         );
     }
+
+    /**
+     * @OAS\Get(path="/oauth/{provider}",tags={"认证"},summary="第三方授权登陆|重定向到此链接即可",description="
+     当处于已登录状态下，PC端使用此接口来绑定未曾绑定第三方的账号信息 只返回success状态
+     未登录下, 进行创建用户与返回user对象
+     ",
+     *     @OAS\Parameter(name="provider",in="path",description="第三方（wechat_public,facebook,twitter）",@OAS\Schema(type="string")),
+     *     @OAS\Parameter(name="return",in="query",description="授权成功后返回的链接",@OAS\Schema(type="string")),
+     *     @OAS\Response(response=200,description="successful operation",@OAS\MediaType(mediaType="application/json")),
+     *     security={{"bearerAuth": {}}},
+     * ),
+     */
+    public function getOauth($provider)
+    {
+        $return = request('return');
+        $return = $return ?: 'https://www.baidu.com';
+
+        $res = (new \Modules\Socialite\Platforms\Factory($provider))->handle($return);
+
+        if ($res instanceof \Modules\Socialite\Entities\Socialite) {
+            $socialite = $res;
+            // if (auth()->check()) {
+            //     // 识别已登录, PC端绑定第三方账号
+            //     $this->my->socialite()->create([
+            //         'provider' => $provider,
+            //         'unique_id' => $socialite->id,
+            //         'nickname' => $socialite->nickname,
+            //         'avatar' => $socialite->avatar,
+            //     ]);
+
+            //     return \Response::success();
+            // }
+            $user = $socialite->able;
+            if (!$user) {
+                $user = User::create([
+                    'nickname' => $socialite->nickname,
+                    'avatar' => $socialite->avatar,
+                ]);
+                $socialite->setAble($user);
+                $user->showAndUpdateApiToken();
+            } else {
+                $user->showAndUpdateApiToken();
+            }
+        } elseif (false === $res) {
+            return redirect($return);
+        } else {
+            return $res;
+        }
+
+        $return .= false === strpos($return, '?') ? '?' : '&';
+        $return .= 'api_token='.$user->api_token;
+
+        return redirect($return);
+    }
 }
