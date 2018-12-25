@@ -20,6 +20,7 @@ class LineFactory implements FactoryInterface
     {
         if (request('state')) {
             if (request('code')) {
+                $this->socialite->redirectUrl(request()->url().'?return='.urlencode($return));
                 // 使用session无状态登录
                 $this->user = $this->socialite->user();
 

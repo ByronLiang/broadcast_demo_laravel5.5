@@ -28,9 +28,9 @@ class PayController extends Controller
     	$response = null;
 		try {
 			$response = $payssion->create(array(
-					'amount' => 1,
+					'amount' => 0.01,
 					'currency' => 'CNY',
-					'pm_id' => 'unionpay_cn',
+					'pm_id' => 'dotpay_pl',
 					'description' => 'Test Pay',
 					//your order id
 					'order_id' => 'fds123',

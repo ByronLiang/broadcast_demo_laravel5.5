@@ -94,7 +94,6 @@ class AuthController extends Controller
     public function getOauth($provider)
     {
         $return = request('return');
-        $return = $return ?: 'https://www.baidu.com';
         $res = (new \Modules\Socialite\Platforms\Factory($provider))->handle($return);
 
         if ($res instanceof \Modules\Socialite\Entities\Socialite) {
