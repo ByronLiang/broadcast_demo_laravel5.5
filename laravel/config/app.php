@@ -178,6 +178,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\CollectionMacroServiceProvider::class,
+        // SocialiteProvider 进行注册
+        \SocialiteProviders\Manager\ServiceProvider::class,
 
     ],
 

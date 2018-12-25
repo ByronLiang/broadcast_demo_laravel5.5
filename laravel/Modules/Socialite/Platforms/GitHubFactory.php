@@ -20,6 +20,7 @@ class GitHubFactory implements FactoryInterface
     {
         if (request('state')) {
             if (request('code')) {
+                // 使用session无状态登录
                 $this->user = $this->socialite->stateless()->user();
 
                 return true;

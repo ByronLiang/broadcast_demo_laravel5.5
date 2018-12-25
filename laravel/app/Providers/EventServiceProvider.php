@@ -20,6 +20,9 @@ class EventServiceProvider extends ServiceProvider
         // 'App\Events\PaperView' => [
         //     'App\Listeners\PaperViewNotification',
         // ],
+        \SocialiteProviders\Manager\SocialiteWasCalled::class => [
+            'SocialiteProviders\Line\LineExtendSocialite@handle'
+        ],
     ];
 
     protected $subscribe = [
