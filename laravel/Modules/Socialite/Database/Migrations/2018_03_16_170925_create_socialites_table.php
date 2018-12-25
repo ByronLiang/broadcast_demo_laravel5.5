@@ -26,8 +26,8 @@ class CreateSocialitesTable extends Migration
 
             $table->unique(['provider', 'unique_id']);
 
-            $table->unsignedInteger('able_id');
-            $table->string('able_type');
+            $table->unsignedInteger('able_id')->nullable();
+            $table->string('able_type')->nullable();
             $table->index(['able_id', 'able_type']);
         });
     }

@@ -7,6 +7,7 @@ use App\Http\Requests\API\AuthRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Cache\AdvancedRateLimiter;
 use Illuminate\Support\Facades\Lang;
+use App\Models\User;
 
 class AuthController extends Controller
 {   
@@ -93,6 +94,8 @@ class AuthController extends Controller
     public function getOauth($provider)
     {
         $return = request('return');
+        $return = $return ?: request()->header('referer');
+        \Log::info('header: '. request()->header('referer'));
         $return = $return ?: 'https://www.baidu.com';
         $res = (new \Modules\Socialite\Platforms\Factory($provider))->handle($return);
 
@@ -115,7 +118,7 @@ class AuthController extends Controller
                     'name' => $socialite->nickname,
                     'avatar' => $socialite->avatar,
                 ]);
-                $socialite->setAble($user);
+                $user->socialite()->save($socialite);
                 $user->showAndUpdateApiToken();
             } else {
                 $user->showAndUpdateApiToken();

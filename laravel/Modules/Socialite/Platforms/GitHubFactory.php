@@ -25,13 +25,14 @@ class GitHubFactory implements FactoryInterface
                 return true;
             }
             abort(400, request('error_description'));
-            
+
             return false;
         }
 
         return $this->socialite->redirectUrl(request()->url())->redirect();
     }
 
+    // 统一返回Socialite模型
     public function socialite(string $provider): EntitySocialite
     {
         $user = $this->user;
@@ -42,31 +43,29 @@ class GitHubFactory implements FactoryInterface
             if ($socialite = EntitySocialite::where('unique_id', $unionId)->first()) {
                 return $socialite;
             } else {
-                $my = User::create([
-                    'avatar' => $user->getAvatar(),
-                    'name' => $user->getNickname(),
-                ]);
-                $my->socialite()->create([
+                // 统一返回User模型
+                // $my = User::create([
+                //     'avatar' => $user->getAvatar(),
+                //     'name' => $user->getNickname(),
+                // ]);
+                // $my->socialite()->create([
+                //     'provider' => $provider,
+                //     'unique_id' => $user->getId(),
+                //     'avatar' => $user->getAvatar(),
+                //     'nickname' => $user->getNickname(),
+                // ]);
+
+                // return $my->socialite;
+
+                $socialite = EntitySocialite::create([
                     'provider' => $provider,
                     'unique_id' => $user->getId(),
                     'avatar' => $user->getAvatar(),
                     'nickname' => $user->getNickname(),
                 ]);
-
-                return $my->socialite;
+        
+                return $socialite;
             }
         }
-
-        // $socialite = EntitySocialite::create([
-        //     'provider' => $provider,
-        //     'unique_id' => $user->getId(),
-        //     'avatar' => $user->getAvatar(),
-        //     'nickname' => $user->getNickname(),
-        // ]);
-        // if (isset($first_socialite) && $first_socialite->able) {
-        //     $socialite->setAble($first_socialite->able);
-        // }
-
-        // return $socialite;
     }
 }
