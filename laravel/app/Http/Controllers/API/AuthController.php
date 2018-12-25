@@ -112,7 +112,7 @@ class AuthController extends Controller
             $user = $socialite->able;
             if (!$user) {
                 $user = User::create([
-                    'nickname' => $socialite->nickname,
+                    'name' => $socialite->nickname,
                     'avatar' => $socialite->avatar,
                 ]);
                 $socialite->setAble($user);

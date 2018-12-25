@@ -16,10 +16,10 @@ class CreateTables extends Migration
 
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('avatar');
-            $table->string('nickname');
+            $table->string('avatar')->nullable();
+            $table->string('nickname')->nullable();
             $table->string('account', 64)->index();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->string('api_token', 64)->nullable()->index();
             $table->rememberToken();
             $table->timestamps();
