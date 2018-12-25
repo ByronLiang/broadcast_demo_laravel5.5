@@ -17,4 +17,13 @@ class Socialite extends \App\Models\Model
     {
         return static::where('unique_id', $value);
     }
+
+    public function setAble(\App\Models\Model $able)
+    {
+        $this->able_id = $able->getKey();
+        $this->able_type = get_class($able);
+        $this->save();
+
+        return $this;
+    }
 }

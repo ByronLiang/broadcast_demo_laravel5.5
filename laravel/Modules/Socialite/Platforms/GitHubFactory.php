@@ -29,7 +29,9 @@ class GitHubFactory implements FactoryInterface
             return false;
         }
 
-        return $this->socialite->redirectUrl(request()->url())->redirect();
+        return $this->socialite
+            ->redirectUrl(request()->url().'?return='.urlencode($return))
+            ->redirect();
     }
 
     // 统一返回Socialite模型

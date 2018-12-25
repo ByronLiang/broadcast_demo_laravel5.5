@@ -101,17 +101,18 @@ class AuthController extends Controller
 
         if ($res instanceof \Modules\Socialite\Entities\Socialite) {
             $socialite = $res;
-            // if (auth()->check()) {
-            //     // 识别已登录, PC端绑定第三方账号
-            //     $this->my->socialite()->create([
-            //         'provider' => $provider,
-            //         'unique_id' => $socialite->id,
-            //         'nickname' => $socialite->nickname,
-            //         'avatar' => $socialite->avatar,
-            //     ]);
+            if (auth()->check()) {
+                // 识别已登录, PC端绑定第三方账号
+                dd($socialite);
+                // $this->my->socialite()->create([
+                //     'provider' => $provider,
+                //     'unique_id' => $socialite->id,
+                //     'nickname' => $socialite->nickname,
+                //     'avatar' => $socialite->avatar,
+                // ]);
 
-            //     return \Response::success();
-            // }
+                // return \Response::success();
+            }
             $user = $socialite->able;
             if (!$user) {
                 $user = User::create([
