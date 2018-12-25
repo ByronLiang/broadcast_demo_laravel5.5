@@ -14,6 +14,9 @@ class Factory
             case 'github':
                 $this->platform = (new GitHubFactory());
                 break;
+            case 'line':
+            $this->platform = (new LineFactory());
+                break;
             default:
                 abort(400, '不支持此登录模式');
                 break;

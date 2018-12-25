@@ -94,8 +94,6 @@ class AuthController extends Controller
     public function getOauth($provider)
     {
         $return = request('return');
-        $return = $return ?: request()->header('referer');
-        \Log::info('header: '. request()->header('referer'));
         $return = $return ?: 'https://www.baidu.com';
         $res = (new \Modules\Socialite\Platforms\Factory($provider))->handle($return);
 
