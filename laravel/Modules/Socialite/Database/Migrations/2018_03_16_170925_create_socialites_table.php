@@ -20,8 +20,8 @@ class CreateSocialitesTable extends Migration
             $table->string('provider')->comment('登录类型');
             $table->string('unique_id')->comment('凭证ID');
             $table->json('extend')->nullable()->comment('扩展数据|字段');
-            $table->string('avatar');
-            $table->string('nickname');
+            $table->string('avatar')->nullable();
+            $table->string('nickname')->nullable();
             $table->timestamps();
 
             $table->unique(['provider', 'unique_id']);
