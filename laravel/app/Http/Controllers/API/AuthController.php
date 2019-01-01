@@ -93,7 +93,14 @@ class AuthController extends Controller
      */
     public function getOauth($provider)
     {
-        $return = request('return');
+        // return \Socialite::driver('facebook')->redirect();
+        $return = '';
+        if (request('return')) {
+            \Cache::put($provider, request('return'), 10);
+            $return = request('return');
+        } else {
+            $return = \Cache::get($provider);
+        }
         $res = (new \Modules\Socialite\Platforms\Factory($provider))->handle($return);
 
         if ($res instanceof \Modules\Socialite\Entities\Socialite) {
@@ -131,5 +138,11 @@ class AuthController extends Controller
         $return .= 'api_token='.$user->api_token;
 
         return redirect($return);
+    }
+
+    public function facebookLogin()
+    {
+        $user = \Socialite::driver('facebook')->user();
+        dd($user);
     }
 }

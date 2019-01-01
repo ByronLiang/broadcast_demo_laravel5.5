@@ -28,7 +28,8 @@ Route::get('store_key', 'RedisController@storeKey');
 Route::group(['middleware' => ['web', 'api']], function () {
 	Route::post('login', 'AuthController@login');
 	Route::get('login_show', 'AuthController@showLoginForm');
-	Route::get('oauth/{provider}', 'AuthController@getOauth');
+	Route::get('auth/oauth/{provider}', 'AuthController@getOauth');
+	Route::get('auth/facebook', 'AuthController@facebookLogin');
 });
 
 Route::get('pay', 'PayController@pay');

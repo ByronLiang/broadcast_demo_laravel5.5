@@ -53,4 +53,9 @@ return [
         'client_secret' => env('LINE_CLIENT_SECRET'),
         'redirect' => '',
     ],
+    'facebook' => [
+        'client_id' => env('FACEBOOK_CLIENT_ID'),
+        'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
+        'redirect' => '',
+    ],
 ];

@@ -15,7 +15,10 @@ class Factory
                 $this->platform = (new GitHubFactory());
                 break;
             case 'line':
-            $this->platform = (new LineFactory());
+                $this->platform = (new LineFactory());
+                break;
+            case 'facebook':
+                $this->platform = (new FaceBookFactory());
                 break;
             default:
                 abort(400, '不支持此登录模式');
