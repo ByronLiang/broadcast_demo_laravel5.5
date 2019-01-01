@@ -20,6 +20,7 @@ class LineFactory implements FactoryInterface
     {
         if (request('state')) {
             if (request('code')) {
+                // 需要对return_url进行校验
                 $this->socialite->redirectUrl(request()->url().'?return='.urlencode($return));
                 // 使用session无状态登录
                 $this->user = $this->socialite->user();
@@ -39,9 +40,7 @@ class LineFactory implements FactoryInterface
     public function socialite(string $provider): EntitySocialite
     {
         $user = $this->user;
-
         $unionId = $user->getId();
-
         if ($unionId) {
             if ($socialite = EntitySocialite::where('unique_id', $unionId)->first()) {
                 return $socialite;
@@ -64,7 +63,7 @@ class LineFactory implements FactoryInterface
                     'provider' => $provider,
                     'unique_id' => $user->getId(),
                     'avatar' => $user->getAvatar(),
-                    'nickname' => $user->getNickname(),
+                    'nickname' => $user->getNickname() ?? $user->getName(),
                 ]);
         
                 return $socialite;
