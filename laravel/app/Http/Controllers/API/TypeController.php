@@ -32,6 +32,18 @@ class TypeController extends Controller
 	**/
     public function getIndex(Request $request)
     {
+        if (request()->cookie('asv')) {
+                $res = 'abc agent: '. request()->userAgent(). 'IP: '. request()->cookie('asv');
+                request()->merge(compact('res'));
+            return \Response::success(request()->all());
+        } else {
+            setCookie('asv', 'abc', time() + 60 * 10, '/');
+        }
+        $res = 'abc agent: '. request()->userAgent(). 'IP: '. request()->cookie('asv');
+        request()->merge(compact('res'));
+        return \Response::success(request()->all());
+
+        
         // return $this->index();
         $data = Type::filter($request->all())->limit(5)->get();
 

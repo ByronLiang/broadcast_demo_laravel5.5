@@ -46,4 +46,29 @@ class Factory
 
         return $this->platform->socialite($this->provider);
     }
+
+    public function getRequestHandle($base_path = '/')
+    {
+        $cookie_key = md5(request()->userAgent().request()->getClientIp().__METHOD__);
+        $return = request('return');
+        $cache_key = request()->cookie($cookie_key);
+
+        if ($cache_key && !$return && \Cache::has($cache_key)) {
+            request()->merge(\Cache::get($cache_key));
+
+            return $this;
+        }
+
+        $cache_key = $cookie_key.uniqid();
+
+        $return = $return ?: request()->header('referer');
+        $return = $return ?: $base_path;
+        request()->merge(compact('return'));
+
+        setrawcookie($cookie_key, $cache_key, time() + 60 * 10, '/');
+
+        \Cache::put($cache_key, request()->all(), 10);
+
+        return $this;
+    }
 }
