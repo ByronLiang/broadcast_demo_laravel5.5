@@ -33,3 +33,6 @@ Route::group(['middleware' => ['web', 'api']], function () {
 });
 
 Route::get('pay', 'PayController@pay');
+Route::get('stripe', 'StripeController@index');
+Route::get('card_token', 'StripeController@creatreToken');
+Route::get('refund', 'StripeController@refund');

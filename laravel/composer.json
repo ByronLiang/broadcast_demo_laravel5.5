@@ -23,6 +23,7 @@
         "predis/predis": "^1.1",
         "pusher/pusher-php-server": "^3.1",
         "socialiteproviders/line": "^2.1",
+        "stripe/stripe-php": "^6.28",
         "tucker-eric/eloquentfilter": "^1.2",
         "wikimedia/composer-merge-plugin": "^1.4",
         "zircote/swagger-php": "3.x-dev"
