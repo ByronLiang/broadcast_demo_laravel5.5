@@ -9,7 +9,7 @@ interface FactoryInterface
      *
      * @return mixed
      */
-    public function handle(string $return = '');
+    public function handle();
 
     /**
      * 获取模型.

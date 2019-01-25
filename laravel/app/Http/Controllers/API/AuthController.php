@@ -93,15 +93,17 @@ class AuthController extends Controller
      */
     public function getOauth($provider)
     {
-        // return \Socialite::driver('facebook')->redirect();
-        $return = '';
-        if (request('return')) {
-            \Cache::put($provider, request('return'), 10);
-            $return = request('return');
-        } else {
-            $return = \Cache::get($provider);
-        }
-        $res = (new \Modules\Socialite\Platforms\Factory($provider))->handle($return);
+        // $return = '';
+        // if (request('return')) {
+        //     \Cache::put($provider, request('return'), 10);
+        //     $return = request('return');
+        // } else {
+        //     $return = \Cache::get($provider);
+        // }
+        // $res = (new \Modules\Socialite\Platforms\Factory($provider))->handle($return);
+        $platform = new \Modules\Socialite\Platforms\Factory($provider);
+        $res = $platform->getRequestHandle('/')->handle();
+        $return = request('return');
 
         if ($res instanceof \Modules\Socialite\Entities\Socialite) {
             $socialite = $res;

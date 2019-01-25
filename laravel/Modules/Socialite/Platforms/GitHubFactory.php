@@ -16,7 +16,7 @@ class GitHubFactory implements FactoryInterface
         $this->socialite = \Socialite::driver('github');
     } 
 
-    public function handle(string $return = '')
+    public function handle()
     {
         if (request('state')) {
             if (request('code')) {
@@ -31,7 +31,7 @@ class GitHubFactory implements FactoryInterface
         }
 
         return $this->socialite
-            ->redirectUrl(request()->url().'?return='.urlencode($return))
+            ->redirectUrl(request()->url())
             ->redirect();
     }
 

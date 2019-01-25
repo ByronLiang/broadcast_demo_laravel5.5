@@ -32,9 +32,9 @@ class Factory
         $this->provider = $provider;
     }
 
-    public function handle($return)
+    public function handle()
     {
-        $res = $this->platform->handle($return);
+        $res = $this->platform->handle();
         // 判断返回的是否为整型, 首次请求接口进行三方授权不是返回布尔值
         if (!is_bool($res)) {
             return $res;
@@ -51,6 +51,7 @@ class Factory
     {
         $cookie_key = md5(request()->userAgent().request()->getClientIp().__METHOD__);
         $return = request('return');
+        // 需移除web的中间件的Cookie加密
         $cache_key = request()->cookie($cookie_key);
 
         if ($cache_key && !$return && \Cache::has($cache_key)) {
