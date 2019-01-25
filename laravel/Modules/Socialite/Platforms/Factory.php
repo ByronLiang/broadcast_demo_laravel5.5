@@ -49,10 +49,13 @@ class Factory
 
     public function getRequestHandle($base_path = '/')
     {
+        $cache_key = null;
         $cookie_key = md5(request()->userAgent().request()->getClientIp().__METHOD__);
         $return = request('return');
-        // 需移除web的中间件的Cookie加密
-        $cache_key = request()->cookie($cookie_key);
+        // 无需移除web的中间件的Cookie加密, 使用原生获取Cookie值
+        if(isset($_COOKIE[$cookie_key])) {
+            $cache_key = $_COOKIE[$cookie_key];
+        }
 
         if ($cache_key && !$return && \Cache::has($cache_key)) {
             request()->merge(\Cache::get($cache_key));
