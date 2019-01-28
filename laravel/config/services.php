@@ -59,7 +59,6 @@ return [
         'redirect' => '',
     ],
     'shopify' => [
-        'AdminUrl' => env('ADMIN_URL'),
         'ShopUrl' => env('SHOP_URL'),
         'ApiKey' => env('SHOPIFY_API_KEY'),
         'SharedSecret' => env('SHOPIFY_API_SECRET'),
