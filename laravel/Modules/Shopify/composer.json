@@ -1,0 +1,25 @@
+{
+    "name": "ganguo/shopify",
+    "description": "",
+    "authors": [
+        {
+            "name": "ganguo",
+            "email": "g@ganguo.io"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Shopify\\Providers\\ShopifyServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Shopify\\": ""
+        }
+    }
+}
