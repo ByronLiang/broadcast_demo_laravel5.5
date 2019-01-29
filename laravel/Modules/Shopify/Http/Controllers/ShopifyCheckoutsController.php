@@ -29,11 +29,15 @@ class ShopifyCheckoutsController extends Controller
     {
         $products = $product->get();
         $item = array_first(array_first($products)['variants']);
+        if (! isset($item['id'])) {
+            abort(400, '未建立商品SKU');
+        }
+        $amount = request('amount') ?? 0;
         $checkout_data = array (
             "line_items" => [
                 [
                     "variant_id" => $item['id'],
-                    "quantity" => 25
+                    "quantity" => ceil($amount / $item['price']),
                 ]
             ]
         );
