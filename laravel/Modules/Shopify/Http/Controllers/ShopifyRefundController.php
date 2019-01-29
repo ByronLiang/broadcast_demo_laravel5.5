@@ -25,6 +25,7 @@ class ShopifyRefundController extends Controller
         dd($data);
     }
 
+    // 退款核算与完成退款操作
     public function create($id)
     {
         $data = $this->shopify->Order($id)->get();
@@ -51,9 +52,11 @@ class ShopifyRefundController extends Controller
                         "gateway" => $transaction['gateway']
                     ]
                 );
-                \Log::info($create_refund);
-                // $res = $this->shopify->Order($id)->Refund->post($create_refund);
-                // dd($res);
+                $refund_res = $this->shopify
+                    ->Order($id)
+                    ->Refund
+                    ->post($create_refund);
+                dd($refund_res);
             } else {
                 abort(400, '无法生成退款交易信息');
             }
@@ -62,13 +65,40 @@ class ShopifyRefundController extends Controller
         }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function store(Request $request)
+    // 经过退款核算, 独立进行退款最后请求
+    public function store()
     {
+        $id = '713103409186';
+        $create_refund = array (
+            'currency' => 'JPY',
+            'shipping' => 
+            array (
+              'full_refund' => true,
+            ),
+            'refund_line_items' => 
+            array (
+              0 => 
+              array (
+                'line_item_id' => 1694274256930,
+                'quantity' => 5.0,
+                'restock_type' => 'no_restock',
+              ),
+            ),
+            'notify' => false,
+            'note' => 'avx',
+            'transactions' => 
+            array (
+              0 => 
+              array (
+                'parent_id' => 918500540450,
+                'amount' => '500',
+                'kind' => 'refund',
+                'gateway' => 'shopify_payments',
+              ),
+            ),
+        );
+        $res = $this->shopify->Order($id)->Refund->post($create_refund);
+        dd($res);
     }
 
     /**
