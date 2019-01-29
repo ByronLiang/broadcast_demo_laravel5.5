@@ -38,7 +38,25 @@ class ShopifyRefundController extends Controller
                 ->Order($id)
                 ->Refund
                 ->calculate($refund_data);
-            dd($res);
+            if (isset($res['transactions'])) {
+                $transaction = array_first($res['transactions']);
+                $create_refund = $refund_data['refund'];
+                $create_refund['notify'] = false;
+                $create_refund['note'] = '';
+                $create_refund['transactions'] = array(
+                    [
+                        "parent_id" => $transaction['parent_id'],
+                        "amount" => $transaction['amount'],
+                        "kind" => "refund",
+                        "gateway" => $transaction['gateway']
+                    ]
+                );
+                \Log::info($create_refund);
+                // $res = $this->shopify->Order($id)->Refund->post($create_refund);
+                // dd($res);
+            } else {
+                abort(400, '无法生成退款交易信息');
+            }
         } else {
             abort(400, '无法获取单据');
         }
