@@ -2,27 +2,16 @@
 
 namespace Modules\Shopify\Http\Controllers;
 
-use PHPShopify\ShopifySDK;
 use Illuminate\Routing\Controller;
 
-class ShopifyController extends Controller
+class ShopifyCheckoutsController extends Controller
 {
-    protected $shopify;
-    
-    public function __construct()
-    {
-        $config = config('services.shopify');
-        if (isset($config['ShopUrl'])) {
-            $config['AccessToken'] = \Cache::get($config['ShopUrl']. ':access_token');
-        }
-        $this->shopify = new ShopifySDK($config);
-    }
-
+    /**
+     * Display a listing of the resource.
+     * @return Response
+     */
     public function index()
     {
-        // 产品变体获取
-        $products = $this->shopify->Product->get();
-        dd(array_first(array_first($products)['variants'])['id']);
         return view('shopify::index');
     }
 
