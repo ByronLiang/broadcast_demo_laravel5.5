@@ -51,13 +51,11 @@ class ShopifyCheckoutsController extends Controller
     {
     }
 
-    /**
-     * Show the specified resource.
-     * @return Response
-     */
-    public function show()
+    public function show($token)
     {
-        return view('shopify::show');
+        $checkout = new Checkout($token);
+        $data = $checkout->get();
+        dd($data);
     }
 
     /**
