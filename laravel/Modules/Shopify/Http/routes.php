@@ -6,4 +6,6 @@ Route::group(['middleware' => 'web', 'prefix' => 'api/shopify', 'namespace' => '
     Route::get('/', 'ShopifyController@index');
     Route::get('/checkouts/create', 'ShopifyCheckoutsController@create');
     Route::get('/checkouts/show/{token}', 'ShopifyCheckoutsController@show');
+    Route::get('/refunds/order/{id}', 'ShopifyRefundController@index');
+    Route::get('/refunds/create/{id}', 'ShopifyRefundController@create');
 });
