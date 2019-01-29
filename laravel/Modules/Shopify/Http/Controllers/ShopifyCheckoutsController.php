@@ -2,26 +2,44 @@
 
 namespace Modules\Shopify\Http\Controllers;
 
+use PHPShopify\ShopifySDK;
+use PHPShopify\Product;
+use Modules\Shopify\Builder\Checkout;
 use Illuminate\Routing\Controller;
 
 class ShopifyCheckoutsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     * @return Response
-     */
+    protected $shopify;
+    
+    public function __construct()
+    {
+        $config = config('services.shopify');
+        if (isset($config['ShopUrl'])) {
+            $config['AccessToken'] = \Cache::get($config['ShopUrl']. ':access_token');
+        }
+        $this->shopify = new ShopifySDK($config);
+    }
+
     public function index()
     {
         return view('shopify::index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Response
-     */
     public function create()
     {
-        return view('shopify::create');
+        $products = $this->shopify->Product->get();
+        $item = array_first(array_first($products)['variants']);
+        $checkout = array (
+            "line_items" => [
+              [
+                  "variant_id" => $item['id'],
+                  "quantity" => 5
+              ]
+            ]
+        );
+        $checkout = new Checkout();
+        $data = $checkout->post($checkout);
+        dd($data);
     }
 
     /**

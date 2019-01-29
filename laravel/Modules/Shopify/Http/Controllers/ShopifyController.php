@@ -23,7 +23,6 @@ class ShopifyController extends Controller
         // 产品变体获取
         $products = $this->shopify->Product->get();
         dd(array_first(array_first($products)['variants'])['id']);
-        return view('shopify::index');
     }
 
     /**
