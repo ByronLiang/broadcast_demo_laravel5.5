@@ -61,7 +61,6 @@ return [
     'shopify' => [
         'ShopUrl' => env('SHOP_URL'),
         'ApiKey' => env('SHOPIFY_API_KEY'),
-        'Password' => '',
         'SharedSecret' => env('SHOPIFY_API_SECRET'),
     ],
 ];

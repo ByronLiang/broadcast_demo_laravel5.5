@@ -25,21 +25,22 @@ class ShopifyCheckoutsController extends Controller
         return view('shopify::index');
     }
 
-    public function create()
+    public function create(Product $product, Checkout $checkout)
     {
-        $products = $this->shopify->Product->get();
+        $products = $product->get();
         $item = array_first(array_first($products)['variants']);
-        $checkout = array (
+        $checkout_data = array (
             "line_items" => [
-              [
-                  "variant_id" => $item['id'],
-                  "quantity" => 5
-              ]
+                [
+                    "variant_id" => $item['id'],
+                    "quantity" => 25
+                ]
             ]
         );
-        $checkout = new Checkout();
-        $data = $checkout->post($checkout);
+        $data = $checkout->post($checkout_data);
         dd($data);
+
+        return \Response::success();
     }
 
     /**
