@@ -9,3 +9,4 @@
 
 Route::any('/pay/{channel}', 'PayController@callback');
 Route::any('/pay/return', 'PayController@returnCallback');
+Route::any('/shopify', 'ShopifyController@index');
