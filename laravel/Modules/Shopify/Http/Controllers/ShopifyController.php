@@ -3,6 +3,7 @@
 namespace Modules\Shopify\Http\Controllers;
 
 use PHPShopify\ShopifySDK;
+use PHPShopify\Order;
 use Illuminate\Routing\Controller;
 
 class ShopifyController extends Controller
@@ -20,6 +21,7 @@ class ShopifyController extends Controller
 
     public function index()
     {
+        dd((new Order('713834856482'))->get());
         // 产品变体获取
         $products = $this->shopify->Product->get();
         dd(array_first(array_first($products)['variants'])['id']);

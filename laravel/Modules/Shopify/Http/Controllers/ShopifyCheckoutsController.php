@@ -4,6 +4,7 @@ namespace Modules\Shopify\Http\Controllers;
 
 use PHPShopify\ShopifySDK;
 use PHPShopify\Product;
+use PHPShopify\AbandonedCheckout;
 use Modules\Shopify\Builder\Checkout;
 use Illuminate\Routing\Controller;
 
@@ -22,6 +23,7 @@ class ShopifyCheckoutsController extends Controller
 
     public function index()
     {
+
         return view('shopify::index');
     }
 
@@ -39,7 +41,10 @@ class ShopifyCheckoutsController extends Controller
                     "variant_id" => $item['id'],
                     "quantity" => ceil($amount / $item['price']),
                 ]
-            ]
+            ],
+            "metafields" => [
+
+            ],
         );
         $data = $checkout->post($checkout_data);
         dd($data);
@@ -58,7 +63,7 @@ class ShopifyCheckoutsController extends Controller
 
     public function show($token)
     {
-        $checkout = new Checkout($token);
+        $checkout = new AbandonedCheckout($token);
         $data = $checkout->get();
         dd($data);
     }

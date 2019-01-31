@@ -8,7 +8,8 @@ class ShopifyController extends Controller
     {
         \Log::info('header: '. request()->header('X-Shopify-Topic'));
         \Log::info('body');
-        \Log::info(request()->all());
+        \Log::info('json');
+        \Log::info(json_encode(request()->all()));
 
         return response('success');
     }
