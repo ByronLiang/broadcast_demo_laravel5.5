@@ -5,6 +5,7 @@ namespace Modules\Shopify\Http\Controllers;
 use PHPShopify\ShopifySDK;
 use PHPShopify\Product;
 use PHPShopify\AbandonedCheckout;
+use PHPShopify\ApplicationCharge;
 use Modules\Shopify\Builder\Checkout;
 use Illuminate\Routing\Controller;
 
@@ -52,13 +53,18 @@ class ShopifyCheckoutsController extends Controller
         return \Response::success();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function store(Request $request)
+    public function store()
     {
+        $charge = array (
+            "name" => "djksdsl",
+            "price" => 1000,
+            "return_url" => "https://www.baidu.com",
+            "test" => true
+        );
+
+        $data = (new ApplicationCharge())->post($charge);
+
+        dd($data);
     }
 
     public function show($token)
