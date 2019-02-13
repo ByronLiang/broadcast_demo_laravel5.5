@@ -22,8 +22,8 @@ class ShopifyServiceProvider extends ServiceProvider
     public function boot()
     {
         // $this->registerTranslations();
-        // $this->registerConfig();
-        // $this->registerViews();
+        $this->registerConfig();
+        $this->registerViews();
         // $this->registerFactories();
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
     }
