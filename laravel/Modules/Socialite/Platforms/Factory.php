@@ -53,10 +53,10 @@ class Factory
         $cookie_key = md5(request()->userAgent().request()->getClientIp().__METHOD__);
         $return = request('return');
         // 无需移除web的中间件的Cookie加密, 使用原生获取Cookie值
-        if(isset($_COOKIE[$cookie_key])) {
-            $cache_key = $_COOKIE[$cookie_key];
-        }
-
+        // if(isset($_COOKIE[$cookie_key])) {
+        //     $cache_key = $_COOKIE[$cookie_key];
+        // }
+        $cache_key = request()->cookie($cookie_key);
         if ($cache_key && !$return && \Cache::has($cache_key)) {
             request()->merge(\Cache::get($cache_key));
 
@@ -68,9 +68,15 @@ class Factory
         $return = $return ?: request()->header('referer');
         $return = $return ?: $base_path;
         request()->merge(compact('return'));
-
-        setrawcookie($cookie_key, $cache_key, time() + 60 * 10, '/');
-
+        // 获取请求路由的所有中间件 返回数组
+        // request()->route()->middleware();
+        if (in_array('web', request()->route()->middleware())) {
+            // 判别当使用web中间件, 使用Laravel内置的cookie进行建立值, 确保取值不为已加密的值
+            cookie()->queue(cookie()->make($cookie_key, $cache_key, 10));
+        } else {
+            // 其余组件可使用原生cookie进行值存储
+            setrawcookie($cookie_key, $cache_key, time() + 60 * 10, '/');
+        }
         \Cache::put($cache_key, request()->all(), 10);
 
         return $this;
