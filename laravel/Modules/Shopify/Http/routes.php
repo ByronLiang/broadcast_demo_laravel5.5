@@ -11,4 +11,5 @@ Route::group(['middleware' => 'web', 'prefix' => 'api/shopify', 'namespace' => '
     Route::get('/refunds/create/{id}', 'ShopifyRefundController@create');
     Route::get('/refunds/finish', 'ShopifyRefundController@store');
     Route::get('/test', 'ShopifyTestController@index');
+    Route::get('/test_show', 'ShopifyTestController@show');
 });

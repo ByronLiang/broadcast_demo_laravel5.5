@@ -24,8 +24,17 @@ class Test
         return 'super haha';
     }
 
-    public function init()
+    public function init($a = null, $b = null, $c = null)
     {
-        return 'abc';
+        return 'abc'. $a;
+    }
+
+    public function da(...$parameters)
+    {
+        // 回调调用使用
+        // $parameters must be array
+        // call_user_func $parameters must be string
+        
+        return call_user_func_array([$this, 'init'], $parameters);
     }
 }

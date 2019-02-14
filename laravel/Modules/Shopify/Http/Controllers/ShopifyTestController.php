@@ -9,7 +9,7 @@ class ShopifyTestController extends Controller
 {
     public function index(Test $test)
     {
-        return $test->lop();
+        return $test->da('32', '312', 'sk');
 
         return view('shopify::index');
     }
@@ -38,7 +38,14 @@ class ShopifyTestController extends Controller
      */
     public function show()
     {
-        return view('shopify::show');
+        if (\Cookie::hasQueued('test_cookie')) {
+            // \Cookie::unqueue('test_cookie');
+        } else {
+            // 将cookie值放置在响应的队列里, 中间件AddQueuedCookiesToResponse进行放置在响应里
+            \Cookie::queue('test_cookie', 'hello', 1);
+        }
+
+        return view('shopify::index');
     }
 
     /**
