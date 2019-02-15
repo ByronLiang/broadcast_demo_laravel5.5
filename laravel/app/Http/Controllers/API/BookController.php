@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\DouBanBook;
-use App\Services\DouBanDataService;
 use App\Http\Requests\API\UpdateBookRequest;
 
 class BookController extends Controller
@@ -14,7 +13,15 @@ class BookController extends Controller
      * @OAS\Parameter(name="id",in="query",description="分类ID",required=false,
      * @OAS\Schema(type="integer",format="int10")),
      * @OAS\Parameter(name="name",in="query",description="分类名称",required=false,
-     * @OAS\Schema(type="string")),
+     *      @OAS\Schema(type="string")),
+     * @OAS\Parameter(name="start",in="query",description="起始数目",required=false,
+     *      @OAS\Schema(type="integer",format="int10")),
+     * @OAS\Parameter(name="count",in="query",description="数据数目",required=false,
+     *      @OAS\Schema(type="integer",format="int10")),
+     * @OAS\Parameter(name="keyword",in="query",description="关键词",required=false,
+     *      @OAS\Schema(type="string")),
+     * @OAS\Parameter(name="type",in="query",description="实时查询",required=false,
+     *      @OAS\Schema(type="string")),
      * @OAS\Response(response=200,description="successful operation"),
      * security={{"bearerAuth": {}}},
      *   
@@ -23,9 +30,15 @@ class BookController extends Controller
 	**/
     public function index()
     {
-        // $douban = new DouBanDataService();
-        // $data = $douban->fetchMovieData(10, 5);
-        $data = DouBanBook::paginate();
+        if (request('type')) {
+            $data = \DouBan::fetcheBookData(
+                request('keyword'), 
+                request('start'), 
+                request('count')
+            );
+        } else {
+            $data = DouBanBook::paginate();
+        }
 
         return \Response::success($data);
     }
@@ -52,8 +65,7 @@ class BookController extends Controller
 	**/
     public function store()
     {
-        $douban = new DouBanDataService();
-        $books = $douban->fetcheBookData(
+        $books = \DouBan::fetcheBookData(
             request('name'), 
             request('start'), 
             request('count')

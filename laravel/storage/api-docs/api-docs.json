@@ -93,7 +93,7 @@
                     "\u8ba4\u8bc1"
                 ],
                 "summary": "\u7b2c\u4e09\u65b9\u6388\u6743\u767b\u9646|\u91cd\u5b9a\u5411\u5230\u6b64\u94fe\u63a5\u5373\u53ef",
-                "description": "\r\n     \u5f53\u5904\u4e8e\u5df2\u767b\u5f55\u72b6\u6001\u4e0b\uff0cPC\u7aef\u4f7f\u7528\u6b64\u63a5\u53e3\u6765\u7ed1\u5b9a\u672a\u66fe\u7ed1\u5b9a\u7b2c\u4e09\u65b9\u7684\u8d26\u53f7\u4fe1\u606f \u53ea\u8fd4\u56desuccess\u72b6\u6001\r\n     \u672a\u767b\u5f55\u4e0b, \u8fdb\u884c\u521b\u5efa\u7528\u6237\u4e0e\u8fd4\u56deuser\u5bf9\u8c61\r\n     ",
+                "description": "\n     \u5f53\u5904\u4e8e\u5df2\u767b\u5f55\u72b6\u6001\u4e0b\uff0cPC\u7aef\u4f7f\u7528\u6b64\u63a5\u53e3\u6765\u7ed1\u5b9a\u672a\u66fe\u7ed1\u5b9a\u7b2c\u4e09\u65b9\u7684\u8d26\u53f7\u4fe1\u606f \u53ea\u8fd4\u56desuccess\u72b6\u6001\n     \u672a\u767b\u5f55\u4e0b, \u8fdb\u884c\u521b\u5efa\u7528\u6237\u4e0e\u8fd4\u56deuser\u5bf9\u8c61\n     ",
                 "operationId": "App\\Http\\Controllers\\API\\AuthController::getOauth",
                 "parameters": [
                     {
@@ -151,6 +151,44 @@
                         "name": "name",
                         "in": "query",
                         "description": "\u5206\u7c7b\u540d\u79f0",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "start",
+                        "in": "query",
+                        "description": "\u8d77\u59cb\u6570\u76ee",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int10"
+                        }
+                    },
+                    {
+                        "name": "count",
+                        "in": "query",
+                        "description": "\u6570\u636e\u6570\u76ee",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int10"
+                        }
+                    },
+                    {
+                        "name": "keyword",
+                        "in": "query",
+                        "description": "\u5173\u952e\u8bcd",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "\u5b9e\u65f6\u67e5\u8be2",
                         "required": false,
                         "schema": {
                             "type": "string"

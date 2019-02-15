@@ -178,6 +178,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\CollectionMacroServiceProvider::class,
+        App\Providers\DouBanServiceProvider::class,
         // SocialiteProvider 进行注册
         \SocialiteProviders\Manager\ServiceProvider::class,
 
@@ -229,6 +230,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'DouBan' => App\Facades\DouBanFacade::class,
     ],
 
 ];
