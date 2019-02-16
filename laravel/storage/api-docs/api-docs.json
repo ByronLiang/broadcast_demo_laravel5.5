@@ -635,6 +635,26 @@
                     }
                 ]
             }
+        },
+        "/cookie_test": {
+            "get": {
+                "tags": [
+                    "Type"
+                ],
+                "summary": "About the use of cookie",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\API\\TypeController::testCookie",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
         }
     },
     "components": {
