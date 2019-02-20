@@ -1,0 +1,16 @@
+{
+    "name": "RedisTask",
+    "alias": "redistask",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\RedisTask\\Providers\\RedisTaskServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}

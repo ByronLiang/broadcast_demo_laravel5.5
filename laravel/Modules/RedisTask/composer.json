@@ -1,0 +1,25 @@
+{
+    "name": "ganguo/redistask",
+    "description": "",
+    "authors": [
+        {
+            "name": "ganguo",
+            "email": "g@ganguo.io"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\RedisTask\\Providers\\RedisTaskServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\RedisTask\\": ""
+        }
+    }
+}
