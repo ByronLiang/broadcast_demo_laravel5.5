@@ -33,7 +33,7 @@ class RedisSub extends Command
         if (! $this->argument('channel')) {
             return $this->warn('请设置订阅的频道名称');
         } else {
-            Redis::subscribe([$this->argument('channel')], function ($message) {
+            Redis::subscribe([$this->argument('channel'), '__keyevent@0__:expired'], function ($message) {
                 return $this->info($message);
             });
         }
