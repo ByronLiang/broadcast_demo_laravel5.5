@@ -8,6 +8,7 @@ use App\Models\Type;
 // use App\Http\Controllers\RESTfulTrait;
 // use Illuminate\Routing\Controller;
 use App\Events\PaperView;
+use App\Jobs\MyTest;
 
 class TypeController extends Controller
 {
@@ -90,5 +91,21 @@ class TypeController extends Controller
         request()->merge(compact('res'));
 
         return \Response::success(request()->all());
+    }
+
+    /**
+     * @OAS\Get(path="/job_test",tags={"Type"},
+        summary="About the use of queue",description="",
+     * @OAS\Response(response=200,description="successful operation"),
+     * security={{"bearerAuth": {}}},
+     *   
+     * )
+     *
+	**/
+    public function testJob()
+    {
+        MyTest::dispatch()->delay(\Carbon\Carbon::now()->addMinutes(1));
+
+        return \Response::success();
     }
 }

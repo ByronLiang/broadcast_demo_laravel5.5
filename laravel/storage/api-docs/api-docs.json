@@ -655,6 +655,26 @@
                     }
                 ]
             }
+        },
+        "/job_test": {
+            "get": {
+                "tags": [
+                    "Type"
+                ],
+                "summary": "About the use of queue",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\API\\TypeController::testJob",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
         }
     },
     "components": {
