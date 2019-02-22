@@ -52,13 +52,23 @@ class RedisController extends Controller
             'cas' => true,
             'watch' => 'user:name:1',
         ];
-        $res = Redis::transaction($options, function ($trans) {
-            $trans->set('user:name:2', 'Jay');
-            $trans->get('name');
-            $trans->multi();
-            $trans->set('user:name:1', 'superMan');
-            $trans->hmget('user:2', 'total');
-        });
+        try {
+            $res = Redis::transaction($options, function ($trans) {
+                // watch 与 multi 之间对 观察的key进行变更会有异常抛出
+                // $trans->set('user:name:1', 'Jay');
+                // 可进行查询其他键的操作
+                $trans->get('user:name:1');
+                $trans->get('name');
+                $trans->multi();
+                // 延时时间, 触发对监听的键进行值的变更, 引发对事务的中断
+                sleep(5);
+                $trans->set('user:name:1', 'superMan111');
+                $trans->hmget('user:2', 'total');
+            });
+        }
+        catch(\Exception $e) {
+            return \Response::error('ss');
+        }
 
         return \Response::success($res);
 
