@@ -38,5 +38,6 @@ Route::get('pay', 'PayController@pay');
 Route::get('stripe', 'StripeController@index');
 Route::get('card_token', 'StripeController@creatreToken');
 Route::get('refund', 'StripeController@refund');
+Route::get('alipay', 'PayController@alipay');
 
 \Modules\Shopify\Shopify::shopifyOauth();
