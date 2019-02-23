@@ -50,7 +50,10 @@ class RedisController extends Controller
         // 可以不设置Options
         $options = [
             'cas' => true,
-            'watch' => 'user:name:1',
+            // 监听多个键值
+            'watch' => ['user:name:1', 'user:name:2'],
+            // 设置事务失败, 进行重新请求的次数
+            'retry' => 2,
         ];
         try {
             $res = Redis::transaction($options, function ($trans) {
@@ -63,10 +66,10 @@ class RedisController extends Controller
                 // 延时时间, 触发对监听的键进行值的变更, 引发对事务的中断
                 sleep(5);
                 $trans->set('user:name:1', 'superMan111');
+                $trans->set('user:name:2', 'bb_byron');
                 $trans->hmget('user:2', 'total');
             });
-        }
-        catch(\Exception $e) {
+        } catch(\Exception $e) {
             return \Response::error('ss');
         }
 
