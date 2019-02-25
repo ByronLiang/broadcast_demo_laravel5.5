@@ -11,6 +11,7 @@ Route::group(['middleware' => 'auth:api'], function () {
 Route::get('type', 'TypeController@getIndex');
 Route::get('cookie_test', 'TypeController@testCookie');
 Route::get('job_test', 'TypeController@testJob');
+Route::get('lock', 'TypeController@testLockFile');
 Route::get('event', 'TypeController@getEvent');
 Route::resources([
     'books' => 'BookController',

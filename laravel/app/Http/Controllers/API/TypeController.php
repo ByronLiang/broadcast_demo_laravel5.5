@@ -9,6 +9,7 @@ use App\Models\Type;
 // use Illuminate\Routing\Controller;
 use App\Events\PaperView;
 use App\Jobs\MyTest;
+use App\Services\FileLockerService;
 
 class TypeController extends Controller
 {
@@ -107,5 +108,12 @@ class TypeController extends Controller
         MyTest::dispatch()->delay(\Carbon\Carbon::now()->addMinutes(1));
 
         return \Response::success();
+    }
+
+    public function testLockFile(FileLockerService $locker)
+    {
+        $locker->setLockFile();
+
+        return \Response::success(['da' => $locker->getContent()]);
     }
 }
