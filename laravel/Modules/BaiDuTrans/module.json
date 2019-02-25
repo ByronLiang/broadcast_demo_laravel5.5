@@ -1,0 +1,18 @@
+{
+    "name": "BaiDuTrans",
+    "alias": "baidutrans",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\BaiDuTrans\\Providers\\BaiDuTransServiceProvider"
+    ],
+    "aliases": {
+        "BaiDuTrans": "Modules\\BaiDuTrans\\Facades\\BaiDuTransFacade"
+    },
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}

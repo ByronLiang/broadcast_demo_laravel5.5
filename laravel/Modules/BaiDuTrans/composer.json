@@ -1,0 +1,25 @@
+{
+    "name": "ganguo/baidutrans",
+    "description": "",
+    "authors": [
+        {
+            "name": "ganguo",
+            "email": "g@ganguo.io"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\BaiDuTrans\\Providers\\BaiDuTransServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\BaiDuTrans\\": ""
+        }
+    }
+}
