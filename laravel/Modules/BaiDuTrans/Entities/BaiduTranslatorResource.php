@@ -74,6 +74,9 @@ abstract class BaiduTranslatorResource
 
     public function processResponse($response, $key = '')
     {
+        if (! is_string($response)) {
+            return new \Exception('响应数据不是为json格式');
+        }
         $data = json_decode($response, true);
         switch ($key) {
             case 'all':
@@ -83,7 +86,7 @@ abstract class BaiduTranslatorResource
                     return isset(array_first($data['trans_result'])['dst']) ?
                         array_first($data['trans_result'])['dst'] : '';
                 } else {
-                    return new \Exception('无法获取翻译结果');
+                    return new \Exception('获取翻译结果出错');
                 }
         }
 

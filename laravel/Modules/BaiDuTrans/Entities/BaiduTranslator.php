@@ -6,6 +6,10 @@ class BaiduTranslator
 {
     private static $url = 'http://api.fanyi.baidu.com/api/trans/vip/translate';
 
+    public $validTranslatorLanguages = [
+        'zh', 'en', 'yue', 'wyw', 'jp', 'kor', 'fra', 'spa', 'th', 'ara', 'ru', 'cht',
+    ];
+
     private static $instance;
 
     protected $config = [];
