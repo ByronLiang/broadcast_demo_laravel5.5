@@ -30,7 +30,8 @@ class AggregationPay
 
         $record = PaymentRecord::firstOrCreate($createData);
 
-        $notify_url = action(config('aggregation_pay.notify_action'), $channel);
+        $notify_url = route('AggregationPayHook', $channel);
+        // $notify_url = action(config('aggregation_pay.notify_action'), $channel);
 
         return $record->initiatePayment($notify_url, $return_url);
     }

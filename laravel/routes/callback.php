@@ -7,6 +7,6 @@
 //    return view('welcome');
 //});
 
-Route::any('/pay/{channel}', 'PayController@callback');
+Route::any('/pay/{channel}', 'PayController@callback')->name('AggregationPayHook');
 Route::any('/pay/return', 'PayController@returnCallback');
 Route::any('/shopify', 'ShopifyController@index');

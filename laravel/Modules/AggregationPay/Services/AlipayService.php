@@ -63,6 +63,7 @@ class AlipayService
     {
         $data = preg_replace("/---.+---/", '', file_get_contents($path));
         $data = str_replace("\n", '', $data);
+        
         return $data;
     }
 

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Services\PayssionService;
+use App\Models\Order;
+use Modules\AggregationPay\AggregationPay;
 
 class PayController extends Controller
 {
@@ -62,5 +64,18 @@ class PayController extends Controller
 			//handle failed
 			return \Response::error('error');
 		}
+    }
+
+    public function alipay(AggregationPay $checkout)
+    {
+        $order = Order::create([
+        	'amount' => 100,
+        ]);
+
+        $aa = $checkout->payment(
+        	'alipay_web', $order, 100, 'test', strtotime('now'), 'https://www.baidu.com'
+        );
+
+        return redirect($aa);
     }
 }
