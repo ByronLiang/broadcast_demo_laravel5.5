@@ -8,8 +8,7 @@ abstract class BaiduTranslatorResource
     {
         $ret = false;
         $i = 0; 
-        while($ret === false) 
-        {
+        while($ret === false) {
             if($i > 1)
                 break;
             if($i > 0) {
@@ -29,8 +28,7 @@ abstract class BaiduTranslatorResource
             $data = $this->convert($args);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
             curl_setopt($ch, CURLOPT_POST, 1);
-        }
-        else {
+        } else {
             $data = $this->convert($args);
             if($data) {
                 if(stripos($url, "?") > 0) {
@@ -72,5 +70,22 @@ abstract class BaiduTranslatorResource
         }
 
         return $args;
+    }
+
+    public function processResponse($response, $key = '')
+    {
+        $data = json_decode($response, true);
+        switch ($key) {
+            case 'all':
+                return $data; 
+            default:
+                if (isset($data['trans_result']) && count($data['trans_result']) > 0) {
+                    return isset(array_first($data['trans_result'])['dst']) ?
+                        array_first($data['trans_result'])['dst'] : '';
+                } else {
+                    return new \Exception('无法获取翻译结果');
+                }
+        }
+
     }
 }

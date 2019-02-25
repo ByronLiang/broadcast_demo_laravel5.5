@@ -10,8 +10,13 @@ class TransController extends Controller
 {
     public function index()
     {
+        $words = [
+            'apple',
+            'pencile',
+            'football',
+        ];
         $trans = BaiduTranslator::getInstance();
         $b = $trans->BaseTranslator();
-        dd($b->translateOne('apple', 'zh'));
+        dd($b->translateMany($words, 'zh'));
     }
 }

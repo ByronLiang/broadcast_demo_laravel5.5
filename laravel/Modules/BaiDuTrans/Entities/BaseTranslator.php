@@ -39,19 +39,22 @@ class BaseTranslator extends BaiduTranslatorResource implements TranslatorInterf
 
     public function translateOne(string $word, string $to, string $from = ''): string
     {
-        $ret = $this->call(
+        $response = $this->call(
             $this->config['url'], 
             $this->config['curl_timeout'], 
             $this->initQuery($word, $to, $from ?: 'auto')
         );
-        $ret = json_decode($ret, true);
-        if (isset($ret['trans_result'])) {
-            return array_first($ret['trans_result'])['dst'];
-        }
+
+        return $this->processResponse($response);
     }
 
     public function translateMany(array $words, string $to, string $from = ''): array
     {
-        return [];
+        $datas = [];
+        foreach ($words as $word) {
+            $datas[] = $this->translateOne($word, $to, $from);
+        }
+
+        return $datas;
     }
 }
