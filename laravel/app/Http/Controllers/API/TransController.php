@@ -16,7 +16,7 @@ class TransController extends Controller
             'football',
         ];
         $trans = BaiduTranslator::getInstance();
-        $b = $trans->BaseTranslator();
-        dd($b->translateMany($words, 'zh'));
+        
+        dd($trans->BaseTranslator()->translateMany($words, 'zh'));
     }
 }

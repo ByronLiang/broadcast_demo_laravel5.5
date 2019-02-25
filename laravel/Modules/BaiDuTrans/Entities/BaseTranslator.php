@@ -39,6 +39,9 @@ class BaseTranslator extends BaiduTranslatorResource implements TranslatorInterf
 
     public function translateOne(string $word, string $to, string $from = ''): string
     {
+        if (! in_array($to, BaiduTranslator::$validTranslatorLanguages)) {
+            throw new \Exception('译文语言方向不支持');
+        }
         $response = $this->call(
             $this->config['url'], 
             $this->config['curl_timeout'], 

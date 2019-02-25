@@ -6,7 +6,8 @@ class BaiduTranslator
 {
     private static $url = 'http://api.fanyi.baidu.com/api/trans/vip/translate';
 
-    public $validTranslatorLanguages = [
+    // 限定有效的译文语言
+    public static $validTranslatorLanguages = [
         'zh', 'en', 'yue', 'wyw', 'jp', 'kor', 'fra', 'spa', 'th', 'ara', 'ru', 'cht',
     ];
 
@@ -44,10 +45,5 @@ class BaiduTranslator
         $resource = new $resourceClassName($this->config);
 
         return $resource;
-    }
-
-    public function getConfig()
-    {
-        return $this->config;
     }
 }
