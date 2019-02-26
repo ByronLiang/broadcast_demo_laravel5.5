@@ -554,6 +554,26 @@
                 ]
             }
         },
+        "/lock_key": {
+            "get": {
+                "tags": [
+                    "Redis"
+                ],
+                "summary": "redis to lock a key",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\API\\RedisController::setLock",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/type": {
             "get": {
                 "tags": [

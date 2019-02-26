@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use Modules\RedisTask\Entities\RedisLocker;
 use Illuminate\Support\Facades\Redis;
 
 class RedisController extends Controller
@@ -103,25 +104,50 @@ class RedisController extends Controller
         return \Response::success();
     }
 
+    /**
+     * @OAS\Get(path="/lock_key",tags={"Redis"},
+        summary="redis to lock a key",description="",
+     * @OAS\Response(response=200,description="successful operation"),
+     * security={{"bearerAuth": {}}},
+     *   
+     * )
+     *
+	**/
+    public function setLock(RedisLocker $locker)
+    {
+        $key = 'locker:1';
+        $locker->setLocker($key);
+
+        return \Response::success();
+    }
+
     protected function zpop($key)
     {
         $element = null;
+        // Initialize with support for CAS operations
+        // Key that needs to be WATCHed to detect changes
+        // Number of retries on aborted transactions, after
+        // which the client bails out with an exception.
         $options = array(
-            'cas' => true,      // Initialize with support for CAS operations
-            'watch' => $key,    // Key that needs to be WATCHed to detect changes
-            'retry' => 3,       // Number of retries on aborted transactions, after
-                                // which the client bails out with an exception.
+            'cas' => true,      
+            'watch' => $key,    
+            'retry' => 3,     
         );
 
         Redis::transaction($options, function ($tx) use ($key, &$element) {
             @list($element) = $tx->zrange($key, 0, 0);
-
             if (isset($element)) {
-                $tx->multi();   // With CAS, MULTI *must* be explicitly invoked.
+                // With CAS, MULTI *must* be explicitly invoked.
+                $tx->multi();
                 $tx->zrem($key, $element);
             }
         });
 
         return $element;
+    }
+
+    protected function resloveLocker()
+    {
+        
     }
 }

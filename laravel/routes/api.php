@@ -28,6 +28,7 @@ Route::get('custom_redis_msg', 'NotificationController@customNotification');
 // Redis
 Route::get('basic_key', 'RedisController@getKey');
 Route::get('store_key', 'RedisController@storeKey');
+Route::get('lock_key', 'RedisController@setLock');
 Route::group(['middleware' => ['web', 'api']], function () {
 	Route::post('login', 'AuthController@login');
 	Route::get('login_show', 'AuthController@showLoginForm');
