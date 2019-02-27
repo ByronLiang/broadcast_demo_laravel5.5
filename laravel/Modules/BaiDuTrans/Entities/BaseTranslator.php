@@ -3,14 +3,18 @@
 namespace Modules\BaiDuTrans\Entities;
 
 use Modules\BaiDuTrans\Entities\Traits\SignTrait;
+use Modules\BaiDuTrans\Entities\Traits\Publics;
 use Modules\BaiDuTrans\Entities\BaiduTranslatorResource;
 use Modules\BaiDuTrans\Entities\Interfacts\TranslatorInterface;
 
 class BaseTranslator extends BaiduTranslatorResource implements TranslatorInterface
 {
-    use SignTrait;
-
+    use SignTrait, Publics;
+    
     protected $config;
+    public $king = 'Kol';
+    public $queue = 'Polly';
+    private $meen = 'saa';
 
     public function __construct(array $config)
     {
