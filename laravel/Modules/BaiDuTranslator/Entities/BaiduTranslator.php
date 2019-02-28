@@ -30,7 +30,7 @@ class BaiduTranslator
 
     private function __construct()
     {
-        $this->config = config('baidu_trans');
+        $this->config = config('baidu_translator');
         $this->config['url'] = static::$url;
     }
 
