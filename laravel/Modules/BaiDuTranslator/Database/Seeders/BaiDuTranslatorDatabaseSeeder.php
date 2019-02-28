@@ -1,11 +1,11 @@
 <?php
 
-namespace Modules\BaiDuTrans\Database\Seeders;
+namespace Modules\BaiDuTranslator\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
-class BaiDuTransDatabaseSeeder extends Seeder
+class BaiDuTranslatorDatabaseSeeder extends Seeder
 {
     /**
      * Run the database seeds.

@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\BaiDuTrans\Entities;
+namespace Modules\BaiDuTranslator\Entities;
 
 class BaiduTranslator
 {

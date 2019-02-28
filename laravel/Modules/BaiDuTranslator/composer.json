@@ -1,5 +1,5 @@
 {
-    "name": "ganguo/baidutrans",
+    "name": "ganguo/baidutranslator",
     "description": "",
     "authors": [
         {
@@ -10,7 +10,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Modules\\BaiDuTrans\\Providers\\BaiDuTransServiceProvider"
+                "Modules\\BaiDuTranslator\\Providers\\BaiDuTranslatorServiceProvider"
             ],
             "aliases": {
                 
@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Modules\\BaiDuTrans\\": ""
+            "Modules\\BaiDuTranslator\\": ""
         }
     }
 }

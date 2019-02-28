@@ -1,11 +1,11 @@
 <?php
 
-namespace Modules\BaiDuTrans\Providers;
+namespace Modules\BaiDuTranslator\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 
-class BaiDuTransServiceProvider extends ServiceProvider
+class BaiDuTranslatorServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
@@ -35,7 +35,7 @@ class BaiDuTransServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('BaiDuTrans', \Modules\BaiDuTrans\Entities\BaiduTranslator::class);
+        //
     }
 
     /**
@@ -46,10 +46,10 @@ class BaiDuTransServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
-            __DIR__.'/../Config/config.php' => config_path('baidu_trans.php'),
+            __DIR__.'/../Config/config.php' => config_path('baidu_translator.php'),
         ], 'config');
         $this->mergeConfigFrom(
-            __DIR__.'/../Config/config.php', 'baidu_trans'
+            __DIR__.'/../Config/config.php', 'baidu_translator'
         );
     }
 
@@ -60,7 +60,7 @@ class BaiDuTransServiceProvider extends ServiceProvider
      */
     public function registerViews()
     {
-        $viewPath = resource_path('views/modules/baidutrans');
+        $viewPath = resource_path('views/modules/baidutranslator');
 
         $sourcePath = __DIR__.'/../Resources/views';
 
@@ -69,8 +69,8 @@ class BaiDuTransServiceProvider extends ServiceProvider
         ],'views');
 
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path . '/modules/baidutrans';
-        }, \Config::get('view.paths')), [$sourcePath]), 'baidutrans');
+            return $path . '/modules/baidutranslator';
+        }, \Config::get('view.paths')), [$sourcePath]), 'baidutranslator');
     }
 
     /**
@@ -80,12 +80,12 @@ class BaiDuTransServiceProvider extends ServiceProvider
      */
     public function registerTranslations()
     {
-        $langPath = resource_path('lang/modules/baidutrans');
+        $langPath = resource_path('lang/modules/baidutranslator');
 
         if (is_dir($langPath)) {
-            $this->loadTranslationsFrom($langPath, 'baidutrans');
+            $this->loadTranslationsFrom($langPath, 'baidutranslator');
         } else {
-            $this->loadTranslationsFrom(__DIR__ .'/../Resources/lang', 'baidutrans');
+            $this->loadTranslationsFrom(__DIR__ .'/../Resources/lang', 'baidutranslator');
         }
     }
 

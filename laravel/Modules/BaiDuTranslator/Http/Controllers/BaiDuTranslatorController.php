@@ -1,12 +1,12 @@
 <?php
 
-namespace Modules\BaiDuTrans\Http\Controllers;
+namespace Modules\BaiDuTranslator\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 
-class BaiDuTransController extends Controller
+class BaiDuTranslatorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class BaiDuTransController extends Controller
      */
     public function index()
     {
-        return view('baidutrans::index');
+        return view('baidutranslator::index');
     }
 
     /**
@@ -23,7 +23,7 @@ class BaiDuTransController extends Controller
      */
     public function create()
     {
-        return view('baidutrans::create');
+        return view('baidutranslator::create');
     }
 
     /**
@@ -41,7 +41,7 @@ class BaiDuTransController extends Controller
      */
     public function show()
     {
-        return view('baidutrans::show');
+        return view('baidutranslator::show');
     }
 
     /**
@@ -50,7 +50,7 @@ class BaiDuTransController extends Controller
      */
     public function edit()
     {
-        return view('baidutrans::edit');
+        return view('baidutranslator::edit');
     }
 
     /**

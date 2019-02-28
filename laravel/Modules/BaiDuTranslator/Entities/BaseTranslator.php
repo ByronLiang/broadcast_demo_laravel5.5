@@ -1,11 +1,11 @@
 <?php
 
-namespace Modules\BaiDuTrans\Entities;
+namespace Modules\BaiDuTranslator\Entities;
 
-use Modules\BaiDuTrans\Entities\Traits\SignTrait;
-use Modules\BaiDuTrans\Entities\Traits\Publics;
-use Modules\BaiDuTrans\Entities\BaiduTranslatorResource;
-use Modules\BaiDuTrans\Entities\Interfacts\TranslatorInterface;
+use Modules\BaiDuTranslator\Entities\Traits\SignTrait;
+use Modules\BaiDuTranslator\Entities\Traits\Publics;
+use Modules\BaiDuTranslator\Entities\BaiduTranslatorResource;
+use Modules\BaiDuTranslator\Entities\Interfacts\TranslatorInterface;
 
 class BaseTranslator extends BaiduTranslatorResource implements TranslatorInterface
 {

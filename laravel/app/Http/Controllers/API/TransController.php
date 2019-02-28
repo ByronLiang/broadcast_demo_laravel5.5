@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Modules\BaiDuTrans\Entities\BaiduTranslator;
+use Modules\BaiDuTranslator\Entities\BaiduTranslator;
 
 class TransController extends Controller
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\BaiDuTrans\Entities\Traits;
+namespace Modules\BaiDuTranslator\Entities\Traits;
 
 trait Publics
 {

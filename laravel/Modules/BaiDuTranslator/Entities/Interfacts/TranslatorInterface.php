@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\BaiDuTrans\Entities\Interfacts;
+namespace Modules\BaiDuTranslator\Entities\Interfacts;
 
 interface TranslatorInterface
 {
