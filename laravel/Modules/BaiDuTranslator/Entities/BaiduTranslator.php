@@ -34,6 +34,13 @@ class BaiduTranslator
         $this->config['url'] = static::$url;
     }
 
+    // 对链接调用实现实例化处理
+    // $this->BaseTranslator => new BaseTranslator()
+    // public function __get($resourceName)
+    // {
+    //     return $this->$resourceName();
+    // }
+
     public function __call($resourceName, $arguments)
     {
         if (! in_array($resourceName, $this->resources)) {
