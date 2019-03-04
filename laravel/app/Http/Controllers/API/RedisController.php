@@ -146,8 +146,22 @@ class RedisController extends Controller
         return $element;
     }
 
-    protected function resloveLocker()
+     /**
+     * @OAS\Get(path="/slave",tags={"Redis"},
+        summary="master and slave to read and write data from redis",description="",
+     * @OAS\Response(response=200,description="successful operation"),
+     * security={{"bearerAuth": {}}},
+     *   
+     * )
+     *
+	**/
+    public function redisSlave()
     {
-        
+        $master = Redis::connection('default');
+        $slave = Redis::connection('slave');
+        $master->set('name', 'Beatiful_Beach');
+        $data = $slave->get('name');
+
+        return \Response::success(compact('data'));
     }
 }

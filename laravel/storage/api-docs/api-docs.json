@@ -574,6 +574,26 @@
                 ]
             }
         },
+        "/slave": {
+            "get": {
+                "tags": [
+                    "Redis"
+                ],
+                "summary": "master and slave to read and write data from redis",
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\API\\RedisController::redisSlave",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/type": {
             "get": {
                 "tags": [

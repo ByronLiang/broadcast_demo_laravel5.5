@@ -107,7 +107,9 @@ return [
     'redis' => [
 
         'client' => 'predis',
-
+        'option' => [
+            'replication' => true,
+        ],
         'default' => [
             'host' => env('REDIS_HOST', '127.0.0.1'),
             'password' => env('REDIS_PASSWORD', null),
@@ -115,7 +117,13 @@ return [
             'database' => 0,
             'read_write_timeout' => 0,
         ],
-
+        'slave' => [
+            'host' => env('REDIS_HOST', '127.0.0.1'),
+            'password' => env('REDIS_PASSWORD', null),
+            'port' => env('REDIS_PORT', 6380),
+            'database' => 0,
+            'read_write_timeout' => 0,
+        ],
     ],
 
 ];
