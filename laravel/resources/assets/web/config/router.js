@@ -38,7 +38,11 @@ module.exports = {
                     name: 'ChatRoom',
                     path: 'chat_room/:id?',
                     component: lazyLoading('Chat/room'),
-                },
+                }, {
+                    name: 'Analysic',
+                    path: 'analysic',
+                    component: lazyLoading('Chat/analysic'), 
+                }
             ],
         }, {
             path: '*',
