@@ -1,0 +1,25 @@
+{
+    "name": "ganguo/designmodel",
+    "description": "",
+    "authors": [
+        {
+            "name": "ganguo",
+            "email": "g@ganguo.io"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\DesignModel\\Providers\\DesignModelServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\DesignModel\\": ""
+        }
+    }
+}
