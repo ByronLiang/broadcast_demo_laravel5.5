@@ -46,4 +46,6 @@ Route::get('alipay', 'PayController@alipay');
 // BaiDuTrans
 Route::get('base_trans', 'TransController@index');
 
+Route::get('analytic', 'GoogleAnalyticController@index');
+
 \Modules\Shopify\Shopify::shopifyOauth();
