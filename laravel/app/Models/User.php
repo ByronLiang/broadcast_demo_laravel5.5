@@ -9,13 +9,15 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Follow\Entities\Traits\CanFollow;
 use Modules\Socialite\SocialiteTrait;
+use App\Models\Traits\CustomNotifiable;
 
 class User extends Model implements AuthenticatableContract
 {
-    use Authenticatable, SafetyPassword, SoftDeletes, Notifiable;
+    use Authenticatable, SafetyPassword, SoftDeletes;
     use \EloquentFilter\Filterable;
     use CanFollow;
     use SocialiteTrait;
+    use CustomNotifiable;
 
     public function showAndUpdateApiToken(array $other_data = [])
     {
