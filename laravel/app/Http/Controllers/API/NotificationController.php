@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Notifications\{TestMessage, SmsMessage, SystemMessage, RedisMessage};
 use App\Models\{DouBanBook, User};
 use Notification;
+use App\Models\Notification as NotificationModel;
 
 class NotificationController extends Controller
 {
@@ -56,7 +57,7 @@ class NotificationController extends Controller
 	**/
     public function systemMessage()
     {
-        $users = User::all();
+        $users = User::find(2);
         Notification::send($users, new SystemMessage());
 
         return \Response::success();
@@ -72,9 +73,10 @@ class NotificationController extends Controller
 	**/
     public function checkNotification()
     {
-        $user = User::find(1);
+        $user = User::find(2);
         // 全部的消息数目
-        $data = $user->notifications;
+        $data = $user->notifications()->paginate();
+        // $data->markAsRead();
         // 当前用户的未读消息数目
         $unread_count = $user->unreadNotifications->count();
 
