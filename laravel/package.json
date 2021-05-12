@@ -25,7 +25,7 @@
     "laravel-echo": "^1.4.0",
     "loadjs": "^3.5.4",
     "lodash": "^4.17.5",
-    "mathjs": "^4.2.2",
+    "mathjs": "^7.5.1",
     "pusher-js": "^4.2.2",
     "qs": "^6.5.2",
     "siema": "^1.5.1",
